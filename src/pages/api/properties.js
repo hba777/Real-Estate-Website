@@ -4,6 +4,7 @@ import pool from "../../db"; // Adjust this path based on your db.js location
 
 const getProperties = async () => {
   const result = await pool.query("SELECT * FROM property"); // Adjust the SQL query as necessary
+  //console.log(result.rows);
   return result.rows;
 };
 
