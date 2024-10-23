@@ -1,5 +1,5 @@
-import React from 'react';
-import Tabs from '@/components/tabs';
+import React from "react";
+import Tabs from "@/components/PropertyList";
 
 const Deals = () => {
   return (

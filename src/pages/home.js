@@ -1,23 +1,23 @@
-import Head from 'next/head';
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+import Head from "next/head";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
 
-import About from '../components/about';
-import Deals from '../components/deals';
-import Services from '../components/services';
-import Review from '../components/review';
-import Insta from '../components/insta';
-import Form from '../components/form';
-import scrollIcon from '../assets/icons/topArrowIcon.png';
+import About from "../components/about";
+import Services from "../components/services";
+import Review from "../components/review";
+import Insta from "../components/insta";
+import Form from "../components/form";
+import scrollIcon from "../assets/icons/topArrowIcon.png";
 
-import Footer from '@/components/footer';
-import Hero from '@/components/hero';
+import Footer from "@/components/footer";
+import Hero from "@/components/hero";
+import PropertyList from "../components/PropertyList";
 
 const HomePage = () => {
   const [showButton, setShowButton] = useState(false);
 
   const handleScrollToTop = () => {
-    window.scrollTo({ top: (0, 0), behavior: 'smooth' });
+    window.scrollTo({ top: (0, 0), behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -29,10 +29,10 @@ const HomePage = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -60,7 +60,7 @@ const HomePage = () => {
           cardSubText3="transactions"
         />
         <Services />
-        <Deals />
+        <PropertyList />
         <Review />
         <Insta />
         <Form />
