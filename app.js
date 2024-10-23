@@ -1,6 +1,10 @@
 const express = require("express");
 const { Pool } = require("pg");
+const cors = require("cors"); // Importing the CORS middleware
 const app = express();
+
+// Enable CORS for all routes
+app.use(cors());
 
 // Database connection details
 const pool = new Pool({
