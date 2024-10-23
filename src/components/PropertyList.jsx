@@ -14,7 +14,8 @@ const PropertyList = () => {
         const response = await fetch("/api/properties");
         if (!response.ok) throw new Error("Network response was not ok");
         const data = await response.json();
-        setProperties(data);
+        // Limit the data to 10 items
+        setProperties(data.slice(0, 10));
       } catch (error) {
         setError(error.message);
       } finally {
@@ -32,11 +33,11 @@ const PropertyList = () => {
     <div className="flex flex-col sm:grid md:grid-cols-2 xl:grid-cols-3 gap-5 m-5 p-5">
       {properties.map((property) => (
         <Card
-          key={property.id}
+          key={property.property_id}
           title={property.title}
           price={property.price}
           address={property.address} // Add address here
-          beds={property.beds} // Add beds here
+          bedrooms={property.bedrooms} // Add beds here
           baths={property.baths} // Add baths here
           area={property.area} // Add area here
         />
