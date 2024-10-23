@@ -18,7 +18,7 @@ const PropertySearch = () => {
 
     // Build query parameters
     const query = {
-      //city,
+      city,
       location,
       propertyType,
       priceMin,
@@ -30,7 +30,7 @@ const PropertySearch = () => {
 
     // Remove empty or default values from the query
     Object.keys(query).forEach((key) => {
-      if (query[key] === "" || query[key] === "All" || query[key] === 0) {
+      if (query[key] === "" || query[key] === 0) {
         delete query[key];
       }
     });

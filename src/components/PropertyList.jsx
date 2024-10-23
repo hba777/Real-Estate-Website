@@ -37,7 +37,7 @@ const PropertyList = () => {
           title={property.title}
           price={property.price}
           address={property.address} // Add address here
-          beds={property.beds} // Add beds here
+          bedrooms={property.bedrooms} // Add beds here
           baths={property.baths} // Add baths here
           area={property.area} // Add area here
         />
