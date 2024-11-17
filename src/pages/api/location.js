@@ -1,6 +1,6 @@
 // src/api/location.js
 
-import pool from "../../db";
+import pool from "../../utils/db";
 
 // Function to get all data from the location table
 export const getLocations = async () => {

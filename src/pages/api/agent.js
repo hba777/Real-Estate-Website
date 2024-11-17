@@ -1,6 +1,6 @@
 // src/api/agent.js
 
-import pool from "../../db";
+import pool from "../../utils/db";
 
 // Function to get all data from the agent table
 export const getAgents = async () => {
