@@ -12,6 +12,7 @@ import scrollIcon from "../assets/icons/topArrowIcon.png";
 import Footer from "@/components/footer";
 import Hero from "@/components/hero";
 import PropertyList from "../components/PropertyList";
+import PropertySearch from "@/components/propertySearch";
 
 import { app, analytics } from "../utils/firebase";
 
@@ -53,6 +54,7 @@ const HomePage = () => {
           email="constrctr@restate.com"
         />
 
+        <PropertySearch/>
         <About
           cardTitle1="15 years"
           cardSubText1="in business"
