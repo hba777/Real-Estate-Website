@@ -13,6 +13,8 @@ import Footer from "@/components/footer";
 import Hero from "@/components/hero";
 import PropertyList from "../components/PropertyList";
 
+import { app, analytics } from "../utils/firebase";
+
 const HomePage = () => {
   const [showButton, setShowButton] = useState(false);
 
