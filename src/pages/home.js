@@ -14,6 +14,8 @@ import Hero from "@/components/hero";
 import PropertyList from "../components/PropertyList";
 import PropertySearch from "@/components/propertySearch";
 
+import { app, analytics } from "../utils/firebase";
+
 const HomePage = () => {
   const [showButton, setShowButton] = useState(false);
 
