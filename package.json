@@ -10,9 +10,13 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.0.0",
+    "@next/swc-win32-x64-msvc": "^15.0.3",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-slot": "^1.1.0",
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
+    "class-variance-authority": "^0.7.0",
     "cors": "^2.8.5",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
@@ -24,7 +28,7 @@
     "mongoose": "^8.8.1",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "next": "14.2.15",
+    "next": "^15.0.3",
     "next-themes": "^0.2.1",
     "nodemailer": "^6.9.16",
     "passport": "^0.7.0",
@@ -38,9 +42,14 @@
     "redis": "^4.7.0",
     "sequelize": "^6.37.5",
     "socket.io": "^4.8.1",
+    "tailwind-merge": "^2.5.4",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.6.3",
     "yup": "^1.0.2"
   },
   "devDependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/ms": "^0.7.34",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7"

@@ -54,7 +54,7 @@ const HomePage = () => {
           email="constrctr@restate.com"
         />
 
-        <PropertySearch/>
+        <PropertySearch />
         <About
           cardTitle1="15 years"
           cardSubText1="in business"
