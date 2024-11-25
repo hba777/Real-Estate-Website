@@ -1,3 +1,7 @@
+Here's an updated version of your README with enhanced formatting and details:
+
+---
+
 # Real Estate Property Management
 
 This project is a comprehensive real estate property management system designed to handle property listings, including details about properties, locations, agencies, and agents. The data is stored in a PostgreSQL database and can be accessed and manipulated through a structured DataFrame format.
@@ -9,8 +13,7 @@ This project is a comprehensive real estate property management system designed 
 - [Data Structure](#data-structure)
   - [Property DataFrame](#property-dataframe)
   - [Location DataFrame](#location-dataframe)
-  - [Agency DataFrame](#agency-dataframe)
-  - [Agent DataFrame](#agent-dataframe)
+  - [Images Management](#images-management)
 - [Database Connection](#database-connection)
 - [Usage](#usage)
 - [Installation](#installation)
@@ -25,9 +28,7 @@ This project provides a user-friendly interface for managing real estate propert
 
 - **Property Listings**: View, add, edit, and delete property listings.
 - **Location Management**: Manage and retrieve locations associated with properties.
-- **Agency and Agent Management**: Keep track of agencies and their respective agents.
-- **Data Visualization**: Integrate visualizations for data insights (optional).
-- **User-Friendly Interface**: Simple interface for seamless user interaction.
+- **Images Management**: Keep track of properties and their respective images.
 
 ## Data Structure
 
@@ -65,23 +66,9 @@ This DataFrame contains location details for properties.
 | `latitude`      | Latitude of the location            |
 | `longitude`     | Longitude of the location           |
 
-### Agency DataFrame
+### Images Management
 
-This DataFrame holds information about real estate agencies.
-
-| Column Name | Description                       |
-| ----------- | --------------------------------- |
-| `agency`    | Name of the agency                |
-| `agency_id` | Unique identifier for each agency |
-
-### Agent DataFrame
-
-This DataFrame contains details about agents.
-
-| Column Name | Description                      |
-| ----------- | -------------------------------- |
-| `agent`     | Name of the agent                |
-| `agent_id`  | Unique identifier for each agent |
+This section handles the management of images associated with each property. Each property can have multiple images linked to it, allowing users to view and manage property visuals.
 
 ## Database Connection
 
@@ -131,9 +118,22 @@ To set up the project on your local machine, follow these steps:
 
 1. Ensure you have Python and PostgreSQL installed.
 2. Clone the repository.
-3. Install required dependencies using pip.
-4. Configure the database connection.
+3. Install required dependencies using pip:
+   
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+4. Configure the database connection:
+   - Modify the database connection details in the project configuration file (`config.py` or equivalent).
+   
 5. Run the application.
+
+   ```bash
+   python app.py
+   ```
+
+6. Access the application in your web browser at `http://localhost:5000`.
 
 ## Contributing
 
@@ -144,3 +144,11 @@ Contributions are welcome! If you would like to contribute to this project, plea
 3. Make your changes and commit them (`git commit -m 'Add a new feature'`).
 4. Push to the branch (`git push origin feature/YourFeature`).
 5. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+Let me know if you'd like further adjustments or additional sections!
