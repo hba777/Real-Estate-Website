@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 ## Real Estate Property Management
+=======
+Here's an updated version of your README with enhanced formatting and details:
+
+---
+
+# Real Estate Property Management
+>>>>>>> 16cdd4178f0b3242cea17c6f60296208061b1525
 
 This project is a comprehensive real estate property management system designed to handle property listings, including details about properties, locations, and images. The backend leverages a PostgreSQL database hosted on Google Cloud Platform (GCP), which is used for storing and managing the data efficiently.
 
@@ -6,10 +14,17 @@ This project is a comprehensive real estate property management system designed 
 
 - [Project Overview](#project-overview)
 - [Features](#features)
+<<<<<<< HEAD
 - [Database Schema](#database-schema)
   - [Property Table](#property-table)
   - [Location Table](#location-table)
   - [Image Table](#image-table)
+=======
+- [Data Structure](#data-structure)
+  - [Property DataFrame](#property-dataframe)
+  - [Location DataFrame](#location-dataframe)
+  - [Images Management](#images-management)
+>>>>>>> 16cdd4178f0b3242cea17c6f60296208061b1525
 - [Database Connection](#database-connection)
 - [Data Source](#data-source)
 - [Backend Structure](#backend-structure)
@@ -32,11 +47,17 @@ This project provides a backend that handles property listings, images, and loca
 
 ## Features
 
+<<<<<<< HEAD
 - **Property Listings**: View, add, edit, and delete property listings with complete details (e.g., price, area, location).
 - **Location Management**: Manage property location details (city, province, locality).
 - **Image Management**: Handle property images by converting them into binary format for storage in PostgreSQL.
 - **Cloud-Based Storage**: Utilize GCP-hosted PostgreSQL for storing and managing property-related data.
 - **Data Import from Kaggle**: The initial dataset is sourced from Kaggle’s **Zameen.com Property Data** (available [here](https://www.kaggle.com/datasets/huzzefakhan/zameencom-property-data-pakistan)).
+=======
+- **Property Listings**: View, add, edit, and delete property listings.
+- **Location Management**: Manage and retrieve locations associated with properties.
+- **Images Management**: Keep track of properties and their respective images.
+>>>>>>> 16cdd4178f0b3242cea17c6f60296208061b1525
 
 ## Database Schema
 
@@ -72,6 +93,7 @@ This table contains location details for properties.
 | `latitude`      | Latitude of the location                          |
 | `longitude`     | Longitude of the location                         |
 
+<<<<<<< HEAD
 ### Image Table
 
 This table holds the image data for properties, with each image associated with a specific property.
@@ -90,6 +112,11 @@ In this project, property images are stored as binary data in the PostgreSQL dat
 
 - **Uploading an Image**: When an image is uploaded, it is converted to binary format and stored in the `image_data` field, linked to a property via `property_id`.
 - **Retrieving an Image**: When an image is requested, the binary data is retrieved from the database and converted back into its original format for display, using technologies like **Pillow** for Python or rendering directly through base64 encoding in a web application.
+=======
+### Images Management
+
+This section handles the management of images associated with each property. Each property can have multiple images linked to it, allowing users to view and manage property visuals.
+>>>>>>> 16cdd4178f0b3242cea17c6f60296208061b1525
 
 ## Database Connection
 
@@ -188,4 +215,43 @@ To run the backend:
 
 Set up PostgreSQL on GCP and configure the connection in the `.env` file.
 
+<<<<<<< HEAD
 ---
+=======
+1. Ensure you have Python and PostgreSQL installed.
+2. Clone the repository.
+3. Install required dependencies using pip:
+   
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+4. Configure the database connection:
+   - Modify the database connection details in the project configuration file (`config.py` or equivalent).
+   
+5. Run the application.
+
+   ```bash
+   python app.py
+   ```
+
+6. Access the application in your web browser at `http://localhost:5000`.
+
+## Contributing
+
+Contributions are welcome! If you would like to contribute to this project, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Make your changes and commit them (`git commit -m 'Add a new feature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+Let me know if you'd like further adjustments or additional sections!
+>>>>>>> 16cdd4178f0b3242cea17c6f60296208061b1525
