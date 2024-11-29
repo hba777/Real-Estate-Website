@@ -2,19 +2,28 @@
 
 import React from "react";
 
-const Card = ({title , price, address, bedrooms,baths, area, imageSrc, }) => {
-  return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      <img src={imageSrc} alt={title} className="w-full h-40 object-cover relative" />
-      <div className="p-4">
-        <h3 className="text-lg font-bold text-black">Area: {area}</h3>
-        <p className="text-red-300">Price: {formatPrice(price)}</p>
-        <p className="text-green-300">Bedrooms: {bedrooms}</p>
-        <p className="text-orange-300">{address}</p>
-      </div>
+const Card = ({ title, price, address, bedrooms, baths, area, images }) => (
+  <div className="border p-4 rounded-lg shadow-md">
+    <h2 className="text-xl font-semibold">{title}</h2>
+    <p>Price: {formatPrice(price)}</p>
+    <p>Address: {address}</p>
+    <p>Bedrooms: {bedrooms}</p>
+    <p>Baths: {baths}</p>
+    <p>Area: {area} marla</p>
+    <div className="image-gallery">
+      {images.length > 0 && (
+        <img
+          src={`data:image/jpeg;base64,${images[0]}`}
+          alt={`Property image 1`}
+          className="w-full h-32 object-cover mt-2"
+        />
+      )}
     </div>
-  );
-};
+  </div>
+);
+
+
+
 
 function formatPrice(price) {
   if (!price) return ''; // Handle empty or undefined price
