@@ -99,6 +99,8 @@ export default function PropertySearchCard() {
               <option value="House">House</option>
               <option value="Plots">Plots</option>
               <option value="Commercial">Commercial</option>
+              <option value="Upper Portion">Upper Portion</option>
+
             </select>
           </div>
 

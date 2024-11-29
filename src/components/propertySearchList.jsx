@@ -4,7 +4,6 @@ import Card from './Card'; // Assuming Card component has styling support for da
 
 const PropertySearchList = () => {
   const [properties, setProperties] = useState([]);
-  const [locations, setLocations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -12,56 +11,29 @@ const PropertySearchList = () => {
   const { city, location, property_type, priceMin, priceMax, areaMin, areaMax, bedrooms } = router.query;
 
   useEffect(() => {
-    const fetchLocation = async () => {
-      try {
-        const response = await fetch("/api/location");
-
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        const data = await response.json();
-        setLocations(data);
-        console.log(data);
-      } catch (error) {
-        console.error("Error fetching location:", error);
-      }
-    };
-
-    fetchLocation();
-  }, []);
-
-  useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await fetch("/api/properties");
+        const response = await fetch("/api/propertyDetails");
         if (!response.ok) throw new Error("Network response was not ok");
+
         const data = await response.json();
 
-        const filteredProperties = data
-          .filter((property) => {
-            const matchedLocation = locations.find(loc => loc.location_id === property.location_id);
-            return (
-              (!city || (matchedLocation && matchedLocation.city.toLowerCase() === city.toLowerCase())) &&
-              (!location || (matchedLocation && matchedLocation.locality.toLowerCase().includes(location.toLowerCase()))) &&
-              (!property_type || (property.property_type && property.property_type.toLowerCase() === property_type.toLowerCase())) &&
-              (!priceMin || property.price >= parseInt(priceMin)) &&
-              (!priceMax || property.price <= parseInt(priceMax)) &&
-              (!areaMin || property.area_marla >= parseInt(areaMin)) &&
-              (!areaMax || property.area_marla <= parseInt(areaMax)) &&
-              (!bedrooms || property.bedrooms == bedrooms)
-            );
-          })
-          .map((property) => {
-            const matchedLocation = locations.find(loc => loc.location_id === property.location_id);
-            return {
-              ...property,
-              address: matchedLocation ? `${matchedLocation.locality}` : property.address,
-            };
-          });
+        // Filter properties based on query parameters
+        const filteredProperties = data.filter((property) => {
+          return (
+            (!city || (property.city && property.city.toLowerCase() === city.toLowerCase())) &&
+            (!location || (property.locality && property.locality.toLowerCase().includes(location.toLowerCase()))) &&
+            (!property_type || (property.property_type && property.property_type.toLowerCase() === property_type.toLowerCase())) &&
+            (!priceMin || property.price >= parseInt(priceMin)) &&
+            (!priceMax || property.price <= parseInt(priceMax)) &&
+            (!areaMin || property.area_marla >= parseInt(areaMin)) &&
+            (!areaMax || property.area_marla <= parseInt(areaMax)) &&
+            (!bedrooms || property.bedrooms == bedrooms)
+          );
+        });
 
         console.log(filteredProperties);
-        setProperties(filteredProperties.slice(0, 10));
+        setProperties(filteredProperties.slice(0, 10)); // Optionally limit the results
       } catch (error) {
         setError(error.message);
       } finally {
@@ -69,10 +41,10 @@ const PropertySearchList = () => {
       }
     };
 
-    if (router.isReady && locations.length > 0) {
+    if (router.isReady) {
       fetchProperties();
     }
-  }, [router.isReady, locations, city, location, property_type, priceMin, priceMax, areaMin, areaMax, bedrooms]);
+  }, [router.isReady, city, location, property_type, priceMin, priceMax, areaMin, areaMax, bedrooms]);
 
   if (loading) return <div className="text-white">Loading...</div>;
   if (error) return <div className="text-red-500">Error: {error}</div>;
@@ -90,6 +62,7 @@ const PropertySearchList = () => {
               bedrooms={property.bedrooms}
               baths={property.baths}
               area={property.area}
+              images={property.images}
             />
           ))}
         </div>
