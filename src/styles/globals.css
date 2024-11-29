@@ -49,7 +49,6 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  font-family: "Trirong", serif;
   scroll-behavior: smooth;
   background-color: rgb(255, 254, 254);
   color: rgb(58, 71, 80);

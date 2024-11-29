@@ -17,10 +17,16 @@ const Hero = ({ address, phone, email }) => {
       <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-8 h-full items-center">
           <div className="space-y-0">
-            <h2 className="text-1xl font-medium text-white italic">
+            <h2
+              className="text-1xl font-medium text-white italic"
+              style={{ fontFamily: "Trirong, sans-serif" }}
+            >
               Local Experts
             </h2>
-            <h1 className="text-6xl font-bold text-white leading-tight">
+            <h1
+              className="text-6xl font-bold text-white leading-tight"
+              style={{ fontFamily: "Trirong, sans-serif" }}
+            >
               LOCAL
               <br />
               SPECIALISTS

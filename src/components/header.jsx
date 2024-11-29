@@ -1,74 +1,75 @@
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
-export default function Header() {
-  const pathname = usePathname();
-
-  const navItems = [
-    { name: "About", href: "/about" },
-    { name: "Properties", href: "/properties" },
-    { name: "Home Search", href: "/home-search" },
-    { name: "Neighborhoods", href: "/neighborhoods" },
-    { name: "Contact Us", href: "/contact" },
-  ];
-
+export default function Navbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-20 backdrop-blur-sm">
-      <div className="container mx-auto px-4 flex h-16 items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Link href="/" className="flex items-center gap-2">
+    <nav className="fixed top-0 left-0 right-0 z-50 font-sans">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          <div className="flex items-center space-x-2">
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
+              className="h-6 w-6"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="text-white"
             >
-              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              <polyline points="9 22 9 12 15 12 15 22" />
+              <circle cx="12" cy="12" r="10" />
+              <polygon points="10 8 16 12 10 16 10 8" />
             </svg>
-            <span className="text-xs font-semibold text-white">
-              Neighborhood
-            </span>
-          </Link>
-        </div>
+            <span className="text-xl">LONA</span>{" "}
+            {/* Removed font-semibold to remove bold */}
+          </div>
 
-        <nav className="hidden md:flex items-center gap-2">
-          {navItems.map((item) => (
+          <div className="hidden md:flex items-center space-x-0 bg-white border rounded-md">
             <Link
-              key={item.href}
-              href={item.href}
-              className={`px-3 py-1 rounded-full text-xs transition-colors ${
-                pathname === item.href
-                  ? "bg-black text-white" // Selected item becomes black with white text
-                  : "text-white hover:bg-white hover:bg-opacity-20"
-              }`}
+              href="#"
+              className="text-sm text-black bg-white px-4 py-2 rounded-l-md hover:bg-gray-200 transition-colors"
             >
-              {item.name}
+              Home
             </Link>
-          ))}
-        </nav>
+            <Link
+              href="#"
+              className="text-sm text-black bg-white px-4 py-2 hover:bg-gray-200 transition-colors"
+            >
+              Next
+            </Link>
+            <Link
+              href="#"
+              className="text-sm text-black bg-white px-4 py-2 hover:bg-gray-200 transition-colors"
+            >
+              Services
+            </Link>
+            <Link
+              href="#"
+              className="text-sm text-black bg-white px-4 py-2 rounded-r-md hover:bg-gray-200 transition-colors"
+            >
+              News
+            </Link>
+          </div>
 
-        <div className="flex items-center gap-2">
-          <Link
-            href="/login"
-            className="px-4 py-2 rounded-full text-xs text-white hover:bg-white hover:bg-opacity-20 transition-colors"
-          >
-            Login
-          </Link>
-          <Link
-            href="/signup"
-            className="px-4 py-2 rounded-full text-xs bg-white text-black hover:bg-opacity-90 transition-colors"
-          >
-            Sign Up
-          </Link>
+          <div className="flex items-center space-x-4">
+            <button className="px-4 py-2 text-sm text-white bg-black border border-transparent rounded-md hover:bg-white hover:text-black transition-colors">
+              Contact Us
+            </button>
+            <button className="p-2 rounded-full bg-white">
+              <svg
+                className="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-    </header>
+    </nav>
   );
 }
