@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight, MoveRight } from "lucide-react";
 
 export default function AutoCarousel() {
@@ -8,9 +9,8 @@ export default function AutoCarousel() {
 
   const slides = [
     {
-      image: "/images/Image-1.png", // Path to your real image
+      image: "/images/Image-8.png",
       expert: "PAIGE SCHULTE",
-      hasAction: true,
     },
     {
       image: "/images/Image-2.png",
@@ -36,7 +36,6 @@ export default function AutoCarousel() {
 
   const imagesPerSlide = 3; // Number of images to show at a time
 
-  // Set an interval to auto-slide every 3 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide(
@@ -47,14 +46,12 @@ export default function AutoCarousel() {
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  // Go to the next slide
   const nextSlide = () => {
     setCurrentSlide(
       (prevSlide) => (prevSlide + 1) % (slides.length - imagesPerSlide + 1)
     );
   };
 
-  // Go to the previous slide
   const prevSlide = () => {
     setCurrentSlide(
       (prevSlide) =>
@@ -95,10 +92,13 @@ export default function AutoCarousel() {
             {slides.map((slide, index) => (
               <div key={index} className="w-1/3 flex-shrink-0 px-2">
                 <div className="relative rounded-2xl overflow-hidden bg-gradient-to-b from-blue-100 to-blue-50 group">
-                  <img
+                  <Image
                     src={slide.image}
                     alt={`Real estate specialist ${slide.expert}`}
-                    className="w-full h-[400px] object-cover"
+                    layout="responsive"
+                    width={400}
+                    height={400}
+                    className="object-cover"
                   />
                   <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm font-medium tracking-wide">
                     {slide.expert}
