@@ -1,6 +1,7 @@
 // src/components/PropertyList.js
 
 import { useEffect, useState } from "react";
+import { useRouter } from 'next/router';
 import Card from "./Card";
 
 const PropertyList = () => {
@@ -11,7 +12,7 @@ const PropertyList = () => {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await fetch("/api/propertyDetails");
+        const response = await fetch("/api/properties");
         if (!response.ok) throw new Error("Network response was not ok");
         const data = await response.json();
         console.log(data);
@@ -26,6 +27,17 @@ const PropertyList = () => {
 
     fetchProperties();
   }, []);
+
+  const router = useRouter();
+
+  const handleCardClick = (property) => {
+  // Save the property data in session storage
+  sessionStorage.setItem('selectedProperty', JSON.stringify(property));
+
+  // Navigate to the details page
+  router.push(`/properties/propertyDetails`);
+};
+
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -42,7 +54,8 @@ const PropertyList = () => {
         baths={property.baths}
         area={property.area_marla || property.area}
         images={property.images} // Pass images to Card
-      />
+        onClick={() => handleCardClick(property)}
+        />
       ))}
     </div>
   );

@@ -13,7 +13,7 @@ const PropertySearchList = () => {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await fetch("/api/propertyDetails");
+        const response = await fetch("/api/properties");
         if (!response.ok) throw new Error("Network response was not ok");
 
         const data = await response.json();
@@ -46,11 +46,19 @@ const PropertySearchList = () => {
     }
   }, [router.isReady, city, location, property_type, priceMin, priceMax, areaMin, areaMax, bedrooms]);
 
+  const handleCardClick = (property) => {
+    // Save the property data in session storage
+    sessionStorage.setItem('selectedProperty', JSON.stringify(property));
+  
+    // Navigate to the details page
+    router.push(`/properties/propertyDetails`);
+  };
+
   if (loading) return <div className="text-white">Loading...</div>;
   if (error) return <div className="text-red-500">Error: {error}</div>;
 
   return (
-    <div className="dark:bg-gray-900 bg-gray-100 min-h-screen p-5">
+    <div className="min-h-screen p-5">
       {properties.length > 0 ? (
         <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {properties.map((property) => (
@@ -63,6 +71,7 @@ const PropertySearchList = () => {
               baths={property.baths}
               area={property.area}
               images={property.images}
+              onClick={() => handleCardClick(property)}
             />
           ))}
         </div>
