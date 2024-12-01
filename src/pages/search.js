@@ -1,4 +1,4 @@
-import PropertySearchCard from "@/components/PropertySearchCard";
+import PropertySearchCard from "@/components/PropertySearchForm";
 import PropertySearchList from "@/components/propertySearchList";
 const SearchPage = () => {
   return (

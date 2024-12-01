@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 
-const Card = ({ title, price, address, bedrooms, baths, area, images, onClick }) => (
+const SearchResultCard = ({ title, price, address, bedrooms, baths, area, images, onClick }) => (
   <div onClick={onClick} className="border p-4 rounded-lg shadow-md cursor-pointer">
     <h2 className="text-xl font-semibold">{title}</h2>
     <p>Price: {formatPrice(price)}</p>
@@ -58,4 +58,4 @@ Card.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default Card;
+export default SearchResultCard;

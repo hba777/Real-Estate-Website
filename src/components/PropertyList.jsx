@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
-import Card from "./card";
+import SearchResultCard from "./SearchResultCard";
 
 const PropertyList = () => {
   const [properties, setProperties] = useState([]);
@@ -45,7 +45,7 @@ const PropertyList = () => {
   return (
     <div className="flex flex-col sm:grid md:grid-cols-2 xl:grid-cols-3 gap-5 m-5 p-5">
       {properties.map((property) => (
-        <Card
+        <SearchResultCard
         key={property.property_id}
         title={property.property_type}
         price={property.price}
