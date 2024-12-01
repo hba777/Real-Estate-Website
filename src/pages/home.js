@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 
 import Hero from "@/components/hero";
 import PropertySearch from "@/components/PropertySearchCard";
-import Carousel from "@/components/carousel";
 import ContactUs from "@/components/contactUs";
 import Footer from "@/components/footer";
 
 import { app, analytics } from "../utils/firebase";
+import AutoCarousel from "@/components/Carousel";
 
 const HomePage = () => {
   const [showButton, setShowButton] = useState(false);
@@ -35,7 +35,7 @@ const HomePage = () => {
     <>
       <Hero />
       <PropertySearch />
-      <Carousel />
+      <AutoCarousel />
       <ContactUs />
       <Footer />
     </>
