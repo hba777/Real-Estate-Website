@@ -4,8 +4,7 @@ import Link from "next/link";
 export default function TestimonialSection() {
   return (
     <section className="relative min-h-[400px] w-full overflow-hidden mt-20">
-      {" "}
-      {/* Adjust mt-32 to any value you like */}
+      {/* Background Image */}
       <Image
         src="/images/image.png" // Correct path to the image
         layout="fill"
@@ -13,6 +12,7 @@ export default function TestimonialSection() {
         quality={85}
         priority
         className="absolute inset-0"
+        alt="Scenic view background image"
       />
       <div className="absolute inset-0 bg-black bg-opacity-30" />
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -24,10 +24,10 @@ export default function TestimonialSection() {
               <br />
               of our clients
             </h2>
-            <Link href="/contact" className="inline-block">
-              <button className="bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                Ask us a question →
-              </button>
+            <Link href="/contact" className="inline-block" >
+                <button className="bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                  Ask us a question →
+                </button>
             </Link>
           </div>
 
@@ -54,14 +54,14 @@ export default function TestimonialSection() {
                   </svg>
                 </div>
                 <p className="text-gray-600 leading-relaxed">
-                  "Our stay at the panoramic wonder cabin was magical. The
+                  &quot;Our stay at the panoramic wonder cabin was magical. The
                   unique design and serene surroundings captivated us from the
                   moment we arrived. The cabin blends modern architecture with
                   natural wood elements perfectly. The highlight was definitely
                   the glass ceiling, offering breathtaking forest views. We
                   spent our days hiking nearby trails and our evenings
-                  stargazing by the fireplace. I can't imagine a more perfect
-                  escape from the city."
+                  stargazing by the fireplace. I can&apos;t imagine a more perfect
+                  escape from the city.&quot;
                 </p>
               </div>
             </div>
