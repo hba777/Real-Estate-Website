@@ -1,12 +1,15 @@
+import PropertySearchCard from "@/components/PropertySearchCard";
 import PropertySearchList from "@/components/propertySearchList";
 const SearchPage = () => {
-    return (
-        <>
-        <div className="dark:bg-bgDark bg-black h-20"></div>
-        <PropertySearchList/>
-        </>
-        
-    );
+  return (
+    <>
+    {/* dark:bg-bgDark for dark mode */}
+      <div className="h-20"></div>
+      <PropertySearchCard />
+
+      <PropertySearchList />
+    </>
+  );
 };
 
 export default SearchPage;

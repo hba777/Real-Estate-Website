@@ -6,6 +6,7 @@ const getProperties = async () => {
       p.property_id, 
       p.property_type, 
       p.location_id,
+      p.date_added,
       p.price,
       p.area,
       p.area_marla,
@@ -28,7 +29,7 @@ const getProperties = async () => {
     ON 
       p.location_id = l.location_id
     GROUP BY 
-      p.property_id, p.property_type, p.location_id, p.price, p.area, p.area_marla, p.baths, p.bedrooms, l.city, l.province_name, l.locality, l.latitude, l.longitude;
+      p.property_id, p.property_type, p.location_id, p.date_added, p.price, p.area, p.area_marla, p.baths, p.bedrooms, l.city, l.province_name, l.locality, l.latitude, l.longitude;
   `);
   return result.rows;
 };

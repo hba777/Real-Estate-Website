@@ -2,8 +2,8 @@
 
 import React from "react";
 
-const Card = ({ title, price, address, bedrooms, baths, area, images }) => (
-  <div className="border p-4 rounded-lg shadow-md">
+const Card = ({ title, price, address, bedrooms, baths, area, images, onClick }) => (
+  <div onClick={onClick} className="border p-4 rounded-lg shadow-md cursor-pointer">
     <h2 className="text-xl font-semibold">{title}</h2>
     <p>Price: {formatPrice(price)}</p>
     <p>Address: {address}</p>
@@ -39,11 +39,11 @@ function formatPrice(price) {
   });
 
   if (numberPrice >= 1e7) { // Greater than or equal to 1 crore
-    return `₨${formatNumber(numberPrice / 1e7)} crore`;
+    return `₨ ${formatNumber(numberPrice / 1e7)} crore`;
   } else if (numberPrice >= 1e5) { // Greater than or equal to 1 lakh
-    return `₨${formatNumber(numberPrice / 1e5)} lakh`;
+    return `₨ ${formatNumber(numberPrice / 1e5)} lakh`;
   } else { // Less than 1 lakh
-    return '₨' + formatNumber(numberPrice);
+    return '₨ ' + formatNumber(numberPrice);
   }
 }
 
