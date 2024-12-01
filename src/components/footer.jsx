@@ -1,8 +1,8 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import starIcon from '../assets/icons/starIcon.png';
-import rightArrowIcon from '../assets/icons/rightArrowIcon.png';
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import starIcon from "../assets/icons/starIcon.png";
+import rightArrowIcon from "../assets/icons/rightArrowIcon.png";
 
 const Footer = () => {
   return (
@@ -49,38 +49,7 @@ const Footer = () => {
           </ul>
         </div>
         {/* rating */}
-        <div className="flex flex-col items-center sm:items-start gap-1 mt-5 sm:mt-0">
-          <div className="flex">
-            <Image
-              src={starIcon}
-              alt="ratings "
-              className="w-[30px] h-[30px]"
-            />
-            <Image
-              src={starIcon}
-              alt="ratings "
-              className="w-[30px] h-[30px]"
-            />
-            <Image
-              src={starIcon}
-              alt="ratings "
-              className="w-[30px] h-[30px]"
-            />
-            <Image
-              src={starIcon}
-              alt="ratings "
-              className="w-[30px] h-[30px]"
-            />
-            <Image
-              src={starIcon}
-              alt="ratings "
-              className="w-[30px] h-[30px]"
-            />
-          </div>
-          <div className="flex justify-center items-center p-2">
-            <p>5.2M satisfied customers</p>
-          </div>
-        </div>
+        <div className="flex flex-col items-center sm:items-start gap-1 mt-5 sm:mt-0"></div>
       </div>
 
       {/* Row 2 */}

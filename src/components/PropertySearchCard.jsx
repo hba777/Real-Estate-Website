@@ -39,7 +39,7 @@ export default function PropertySearchCard() {
   };
 
   return (
-    <div className="w-full max-w-xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <div className="transform -translate-y-5 w-full max-w-xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
       <div className="px-6 py-4">
         <h2 className="text-lg font-semibold text-center text-gray-800 mb-4">
           {/* Removed static text from the header */}
@@ -100,7 +100,6 @@ export default function PropertySearchCard() {
               <option value="Plots">Plots</option>
               <option value="Commercial">Commercial</option>
               <option value="Upper Portion">Upper Portion</option>
-
             </select>
           </div>
 
