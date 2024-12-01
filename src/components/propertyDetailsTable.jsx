@@ -11,11 +11,11 @@ const PropertyDetailsTable = ({ property }) => {
             </div>
             <div className="flex justify-between py-2 border-b">
               <span className="font-medium">Price</span>
-              <span>{property.price}</span>
+              <span>{formatPrice(property.price)}</span>
             </div>
             <div className="flex justify-between py-2 border-b">
               <span className="font-medium">Location</span>
-              <span>{property.address}</span>
+              <span>{property.locality}</span>
             </div>
             <div className="flex justify-between py-2">
               <span className="font-medium">Bath(s)</span>
@@ -46,6 +46,32 @@ const PropertyDetailsTable = ({ property }) => {
       </div>
     );
   };
+
+  function formatPrice(price) {
+    if (!price) return ""; // Handle empty or undefined price
+  
+    const numberPrice = parseFloat(price);
+  
+    if (isNaN(numberPrice)) return ""; // Handle invalid price
+  
+    // Helper function to format number with two decimal places
+    const formatNumber = (num) =>
+      num.toLocaleString("en-PK", {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2,
+      });
+  
+    if (numberPrice >= 1e7) {
+      // Greater than or equal to 1 crore
+      return `₨ ${formatNumber(numberPrice / 1e7)} crore`;
+    } else if (numberPrice >= 1e5) {
+      // Greater than or equal to 1 lakh
+      return `₨ ${formatNumber(numberPrice / 1e5)} lakh`;
+    } else {
+      // Less than 1 lakh
+      return "₨ " + formatNumber(numberPrice);
+    }
+  }
 
   function formatDate(dateString) {
     if (!dateString) return "N/A";

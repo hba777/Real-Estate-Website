@@ -48,7 +48,7 @@ function formatPrice(price) {
 }
 
 
-Card.propTypes = {
+SearchResultCard.propTypes = {
   title: PropTypes.string.isRequired,
   price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   address: PropTypes.string.isRequired,
