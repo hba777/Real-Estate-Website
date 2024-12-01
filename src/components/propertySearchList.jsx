@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Card from './Card'; // Assuming Card component has styling support for dark mode
+import Card from './card';
 
 const PropertySearchList = () => {
   const [properties, setProperties] = useState([]);

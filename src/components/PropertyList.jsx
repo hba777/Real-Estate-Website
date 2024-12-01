@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
-import Card from "./Card";
+import Card from "./card";
 
 const PropertyList = () => {
   const [properties, setProperties] = useState([]);
