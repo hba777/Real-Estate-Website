@@ -68,7 +68,7 @@ export default function AutoCarousel3() {
               key={index}
               className="flex-shrink-0 w-[400px] px-2 relative rounded-2xl overflow-hidden"
             >
-              <div className="transition-transform duration-300 hover:scale-20 hover:rounded-lg w-full h-full">
+              <div className="transition-transform duration-300 hover:scale-105 hover:rounded-lg w-full h-full">
                 <Image
                   src={slide.image}
                   alt={`Real estate specialist ${slide.expert}`}
