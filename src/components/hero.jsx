@@ -5,12 +5,19 @@ const Hero = ({ address, phone, email }) => {
   return (
     <section className="relative w-full h-screen">
       <div className="absolute inset-0">
-        <Image
+        {/* <Image
           src="/images/heroBackground.png"
           alt="Background image"
           fill
           className="w-full h-screen bg-no-repeat object-cover object-center"
           priority // Optional: Ensures the image loads quickly
+        /> */}
+        <video
+          src="/images/video2.mp4"
+          autoPlay
+          loop
+          muted
+          className="w-full h-screen object-cover"
         />
       </div>
 

@@ -80,7 +80,9 @@ export default function AutoCarousel() {
       </div>
 
       <div className="relative">
+        {/* slider  */}
         <div className="overflow-hidden">
+          {/* slidetrack  */}
           <div
             className="flex transition-transform duration-500 ease-out"
             style={{
