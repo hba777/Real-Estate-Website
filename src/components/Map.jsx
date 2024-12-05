@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+
 
 const PropertyMapButton = ({ property }) => {
   const [isMapVisible, setMapVisible] = useState(false);
@@ -54,10 +58,22 @@ const PropertyMapButton = ({ property }) => {
 const MapContent = ({ property }) => {
   useEffect(() => {
     let map;
+
     if (property.latitude && property.longitude) {
       const mapContainer = document.getElementById("map-content-inner");
       if (mapContainer && !mapContainer._leaflet_id) {
-        const L = require("leaflet");
+        // Fix marker icon issue
+        const DefaultIcon = L.icon({
+          iconUrl: "/images/marker-icon.png",
+          shadowUrl: "/images/marker-shadow.png",
+          iconSize: [25, 41],
+          iconAnchor: [12, 41],
+          popupAnchor: [1, -34],
+          tooltipAnchor: [16, -28],
+        });
+
+        L.Marker.prototype.options.icon = DefaultIcon;
+
         map = L.map(mapContainer).setView(
           [property.latitude, property.longitude],
           14
@@ -74,6 +90,7 @@ const MapContent = ({ property }) => {
           .openPopup();
       }
     }
+
     return () => {
       if (map) map.remove();
     };
