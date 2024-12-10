@@ -3,10 +3,11 @@ import { signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import { auth, googleProvider } from "../utils/firebase";
 import { FcGoogle } from "react-icons/fc";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
+import Image from "next/image";
 
 const db = getFirestore(); // Initialize Firestore
 
-const GoogleSignInButton = () => {
+export default function GoogleSignInButton () {
   const [user, setUser] = useState(null); // State to track user info
 
   const handleGoogleSignIn = async () => {
@@ -62,7 +63,7 @@ const GoogleSignInButton = () => {
     <div className="flex items-center gap-2">
       {user ? (
         // If user is signed in, show profile image in a circle
-        <img
+        <Image
           src={user.Image} // Display user's image or fallback to default image
           alt={user.Name}
           className="w-12 h-12 rounded-full border-2 border-gray-300"
@@ -81,4 +82,3 @@ const GoogleSignInButton = () => {
   );
 };
 
-export default GoogleSignInButton;

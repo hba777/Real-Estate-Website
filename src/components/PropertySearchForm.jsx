@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 
-export default function PropertySearchCard() {
+export default function PropertySearchForm() {
   const [city, setCity] = useState("Islamabad");
   const [location, setLocation] = useState("");
-  const [propertyType, setPropertyType] = useState("House");
+  const [property_type, setPropertyType] = useState("House");
   const [priceMin, setPriceMin] = useState("0");
   const [priceMax, setPriceMax] = useState("");
   const [areaMin, setAreaMin] = useState("0");
@@ -15,6 +15,10 @@ export default function PropertySearchCard() {
   const [bedrooms, setBedrooms] = useState("1");
 
   const router = useRouter();
+  const pathname = usePathname();
+
+  const isSearchPage = pathname === "/search";
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,7 +26,7 @@ export default function PropertySearchCard() {
     const query = {
       city,
       location,
-      propertyType,
+      property_type,
       priceMin,
       priceMax,
       areaMin,
@@ -42,7 +46,7 @@ export default function PropertySearchCard() {
   return (
     <div className="transform -translate-y-5 w-full max-w-xl mx-auto bg-white shadow-lg rounded-lg ">
       {/* arrow  */}
-      <div
+      {!isSearchPage && (<div
         onClick={() =>
           document
             .querySelector("#card-section")
@@ -50,14 +54,14 @@ export default function PropertySearchCard() {
         }
         className="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-white  w-10 h-10 flex items-center justify-center rounded-full cursor-pointer shadow-md"
       >
-        <Image
+        {<Image
           src="/images/arrow.svg"
           alt="arrow icon"
           width={20}
           height={24}
           className="text-gray-400"
-        />
-      </div>
+        />}
+      </div>)}
 
       {/* card content  */}
       <div id="card-section">
@@ -106,14 +110,14 @@ export default function PropertySearchCard() {
 
             <div className="space-y-2">
               <label
-                htmlFor="propertyType"
+                htmlFor="property_type"
                 className="block text-sm font-medium text-gray-700"
               >
                 Property Type
               </label>
               <select
-                id="propertyType"
-                value={propertyType}
+                id="property_type"
+                value={property_type}
                 onChange={(e) => setPropertyType(e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded-md bg-white text-gray-800 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
@@ -121,6 +125,7 @@ export default function PropertySearchCard() {
                 <option value="Plots">Plots</option>
                 <option value="Commercial">Commercial</option>
                 <option value="Upper Portion">Upper Portion</option>
+                <option value="Flat">Flat</option>
               </select>
             </div>
 
