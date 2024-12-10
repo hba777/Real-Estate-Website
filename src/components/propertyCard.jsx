@@ -7,7 +7,9 @@ import {
   FaRulerVertical,
 } from "react-icons/fa6";
 
-const PropertyCard = ({ images, price, address, bedrooms, baths, area }) => {
+import Image from "next/image";
+
+export default function PropertyCard ({ images, price, address, bedrooms, baths, area }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrevClick = () => {
@@ -41,7 +43,7 @@ const PropertyCard = ({ images, price, address, bedrooms, baths, area }) => {
         </button>
 
         {images.length > 0 && (
-          <img
+          <Image
             src={`data:image/jpeg;base64,${images[currentIndex]}`}
             alt={`Property image ${currentIndex + 1}`}
             className="w-full h-[500px] object-cover rounded-lg"
@@ -104,4 +106,3 @@ function formatPrice(price) {
   }
 }
 
-export default PropertyCard;

@@ -24,25 +24,25 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center space-x-0 bg-white border rounded-md">
             <Link
-              href="#"
+              href="/"
               className="text-sm text-black bg-white px-4 py-2 rounded-l-md hover:bg-gray-200 transition-colors"
             >
               Home
             </Link>
             <Link
-              href="#"
+              href=""
               className="text-sm text-black bg-white px-4 py-2 hover:bg-gray-200 transition-colors"
             >
               Next
             </Link>
             <Link
-              href="#"
+              href=""
               className="text-sm text-black bg-white px-4 py-2 hover:bg-gray-200 transition-colors"
             >
               Services
             </Link>
             <Link
-              href="#"
+              href=""
               className="text-sm text-black bg-white px-4 py-2 rounded-r-md hover:bg-gray-200 transition-colors"
             >
               News

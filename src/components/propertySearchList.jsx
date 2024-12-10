@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import SearchResultCard from "./SearchResultCard";
 
-const PropertySearchList = () => {
+export default function PropertySearchList() {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -22,23 +22,32 @@ const PropertySearchList = () => {
   } = router.query;
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     const fetchProperties = async () => {
       setLoading(true);
+
       try {
-        const response = await fetch("/api/properties");
+        const response = await fetch("/api/properties", { signal });
         if (!response.ok) throw new Error("Network response was not ok");
-  
-        const data = await response.json();
-        console.log('API Data:', data);
-  
+
+        const data = await response.json().then();
+        console.log("API Data:", data);
+        setLoading(false);
+
         // Filter properties based on query parameters
         const filteredProperties = data.filter((property) => {
           return (
             (!city || (property.city && property.city === city)) && // Exact match for city
-            (!property_type || (property.property_type && property.property_type === property_type)) && // Exact match for property type
+            (!property_type ||
+              (property.property_type &&
+                property.property_type === property_type)) && // Exact match for property type
             (!location ||
               (property.locality &&
-                property.locality.toLowerCase().includes(location.toLowerCase()))) &&
+                property.locality
+                  .toLowerCase()
+                  .includes(location.toLowerCase()))) &&
             (!priceMin || property.price >= parseInt(priceMin)) &&
             (!priceMax || property.price <= parseInt(priceMax)) &&
             (!areaMin || property.area_marla >= parseInt(areaMin)) &&
@@ -46,20 +55,25 @@ const PropertySearchList = () => {
             (!bedrooms || property.bedrooms == bedrooms)
           );
         });
-  
-        console.log('Filtered Properties:', filteredProperties);
-  
+
+        console.log("Filtered Properties:", filteredProperties);
+
         setProperties(filteredProperties);
       } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
+        if (error.name !== "AbortError") {
+          setError(error.message);
+        }
       }
     };
-  
+
     if (router.isReady) {
       fetchProperties();
     }
+
+    // Cleanup function to abort any ongoing fetch request when dependencies change
+    return () => {
+      controller.abort();
+    };
   }, [
     router.isReady,
     city,
@@ -71,8 +85,6 @@ const PropertySearchList = () => {
     areaMax,
     bedrooms,
   ]);
-  
-  
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -101,7 +113,7 @@ const PropertySearchList = () => {
     currentPage * resultsPerPage
   );
 
-  console.log(totalPages)
+  console.log(totalPages);
 
   return (
     <div className="min-h-screen px-5">
@@ -109,10 +121,11 @@ const PropertySearchList = () => {
         <div>
           <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {paginatedProperties.map((property) => (
-              <div className="w-full sm:w-full md:w-[90%] lg:w-full mx-auto">
+              <div
+                key={property.property_id}
+                className="w-full sm:w-full md:w-[90%] lg:w-full mx-auto"
+              >
                 <SearchResultCard
-                  key={property.property_id}
-                  title={property.title}
                   price={property.price}
                   address={property.locality}
                   bedrooms={property.bedrooms}
@@ -125,7 +138,7 @@ const PropertySearchList = () => {
               </div>
             ))}
           </div>
-  
+
           {/* Pagination */}
           <div className="flex justify-center mt-8 space-x-2 mb-4">
             {Array.from({ length: totalPages }).map((_, index) => (
@@ -150,7 +163,4 @@ const PropertySearchList = () => {
       )}
     </div>
   );
-  
 };
-
-export default PropertySearchList;

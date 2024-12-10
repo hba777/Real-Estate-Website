@@ -4,7 +4,6 @@ import Image from "next/image";
 import { FaCamera, FaBed, FaBath, FaRulerVertical } from "react-icons/fa";
 
 const SearchResultCard = ({
-  title,
   price,
   address,
   bedrooms,
@@ -39,7 +38,6 @@ const SearchResultCard = ({
       )}
     </div>
     <div className="ml-4 flex flex-col justify-between">
-      <h2 className="text-lg font-semibold truncate">{title}</h2>
       <p className="text-gray-700 font-bold">Price: {formatPrice(price)}</p>
       <p className="text-gray-700">
         <span className="font-bold">Address:</span> {address}
@@ -90,13 +88,13 @@ function formatPrice(price) {
   }
 }
 
+//Prop Validation 
 SearchResultCard.propTypes = {
-  title: PropTypes.string.isRequired,
   price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   address: PropTypes.string.isRequired,
-  bedrooms: PropTypes.number.isRequired,
-  baths: PropTypes.number.isRequired,
-  area: PropTypes.number.isRequired,
+  bedrooms: PropTypes.string.isRequired,
+  baths: PropTypes.string.isRequired,
+  area: PropTypes.string.isRequired,
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
   onClick: PropTypes.func.isRequired,
 };
