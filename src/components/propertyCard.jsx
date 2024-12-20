@@ -9,7 +9,7 @@ import {
 
 import Image from "next/image";
 
-export default function PropertyCard ({ images, price, address, bedrooms, baths, area }) {
+export default function PropertyCard({ images, price, address, bedrooms, baths, area }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrevClick = () => {
@@ -46,7 +46,9 @@ export default function PropertyCard ({ images, price, address, bedrooms, baths,
           <Image
             src={`data:image/jpeg;base64,${images[currentIndex]}`}
             alt={`Property image ${currentIndex + 1}`}
-            className="w-full h-[500px] object-cover rounded-lg"
+            width={800} // Set width explicitly
+            height={500} // Set height explicitly
+            className="object-cover rounded-lg"
           />
         )}
       </div>
@@ -78,7 +80,7 @@ export default function PropertyCard ({ images, price, address, bedrooms, baths,
       </div>
     </div>
   );
-};
+}
 
 function formatPrice(price) {
   if (!price) return ""; // Handle empty or undefined price
@@ -95,14 +97,10 @@ function formatPrice(price) {
     });
 
   if (numberPrice >= 1e7) {
-    // Greater than or equal to 1 crore
     return `₨ ${formatNumber(numberPrice / 1e7)} crore`;
   } else if (numberPrice >= 1e5) {
-    // Greater than or equal to 1 lakh
     return `₨ ${formatNumber(numberPrice / 1e5)} lakh`;
   } else {
-    // Less than 1 lakh
     return "₨ " + formatNumber(numberPrice);
   }
 }
-

@@ -12,6 +12,8 @@ export default function WhatsAppButton () {
       <Image
         src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" // WhatsApp logo URL
         alt="WhatsApp"
+        height={192}
+        width={192}
         className="w-5 h-5 mr-2 shrink-0" // Ensure icon size doesn't shrink
       />
       Contact Us
