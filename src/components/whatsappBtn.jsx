@@ -1,7 +1,7 @@
 // src/components/WhatsappButton.js
 import Image from "next/image";
 
-export default function WhatsAppButton () {
+export default function WhatsAppButton() {
   return (
     <a
       href="https://web.whatsapp.com/" // Default WhatsApp Web link
@@ -12,10 +12,11 @@ export default function WhatsAppButton () {
       <Image
         src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" // WhatsApp logo URL
         alt="WhatsApp"
+        width={20} // Specify width
+        height={20} // Specify height
         className="w-5 h-5 mr-2 shrink-0" // Ensure icon size doesn't shrink
       />
       Contact Us
     </a>
   );
-};
-
+}

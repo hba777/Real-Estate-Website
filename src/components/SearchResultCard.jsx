@@ -14,16 +14,16 @@ const SearchResultCard = ({
 }) => (
   <div
     onClick={onClick}
-    className="flex border border-gray-300 p-4 rounded-lg shadow-lg hover:shadow-xl transition duration-300 cursor-pointer"
+    className="flex  bg-white p-3 rounded-lg shadow-lg hover:shadow-xl transition duration-300 cursor-pointer"
   >
-    <div className="relative w-48 h-48 flex-shrink-0">
+    <div className="relative w-40 h-30 flex-shrink-0">
       {images.length > 0 ? (
         <Image
           src={`data:image/jpeg;base64,${images[0]}`}
           alt={`Property image`}
-          className="w-full h-full object-cover rounded-lg"
-          width={192}
-          height={192}
+          className="w-full h-full "
+          width={100}
+          height={100}
         />
       ) : (
         <div className="w-full h-full bg-gray-200 rounded-lg flex items-center justify-center">
@@ -37,28 +37,28 @@ const SearchResultCard = ({
         </div>
       )}
     </div>
-    <div className="ml-4 flex flex-col justify-between">
+    <div className="ml-4 flex flex-col justify-center">
       <p className="text-gray-700 font-bold">Price: {formatPrice(price)}</p>
       <p className="text-gray-700">
         <span className="font-bold">Address:</span> {address}
       </p>
-      <div className="flex justify-around mt-4 space-x-4 sm:space-x-8 text-center">
+      <div className="flex flex-row mt-4 space-x-4 sm:space-x-8 text-center">
         {/* Bedrooms */}
-        <div className="flex flex-col items-center">
-          <FaBed className="text-xl text-gray-500" />
-          <span className="mt-2 text-sm text-gray-700">{bedrooms}</span>
+        <div className="flex flex-row items-center space-x-2">
+          <FaBed className="text-sm text-gray-500" />
+          <span className="text-xs text-gray-500">{bedrooms}</span>
         </div>
 
         {/* Bathrooms */}
-        <div className="flex flex-col items-center">
-          <FaBath className="text-xl text-gray-500" />
-          <span className="mt-2 text-sm text-gray-700">{baths}</span>
+        <div className="flex flex-row items-center space-x-2 ">
+          <FaBath className="text-sm text-gray-500" />
+          <span className="text-xs text-gray-500">{baths}</span>
         </div>
 
         {/* Area */}
-        <div className="flex flex-col items-center">
-          <FaRulerVertical className="text-xl text-gray-500" />
-          <span className="mt-2 text-sm text-gray-700">{area}</span>
+        <div className="flex flex-row items-center space-x-1">
+          <FaRulerVertical className="text-sm text-gray-500 " />
+          <span className="text-xs text-gray-500">{area}</span>
         </div>
       </div>
     </div>
@@ -88,7 +88,7 @@ function formatPrice(price) {
   }
 }
 
-//Prop Validation 
+//Prop Validation
 SearchResultCard.propTypes = {
   price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   address: PropTypes.string.isRequired,

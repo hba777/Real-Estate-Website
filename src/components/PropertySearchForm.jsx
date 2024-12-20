@@ -19,7 +19,6 @@ export default function PropertySearchForm() {
 
   const isSearchPage = pathname === "/search";
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -46,22 +45,26 @@ export default function PropertySearchForm() {
   return (
     <div className="transform -translate-y-5 w-full max-w-xl mx-auto bg-white shadow-lg rounded-lg ">
       {/* arrow  */}
-      {!isSearchPage && (<div
-        onClick={() =>
-          document
-            .querySelector("#card-section")
-            .scrollIntoView({ behavior: "smooth", block: "center" })
-        }
-        className="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-white  w-10 h-10 flex items-center justify-center rounded-full cursor-pointer shadow-md"
-      >
-        {<Image
-          src="/images/arrow.svg"
-          alt="arrow icon"
-          width={20}
-          height={24}
-          className="text-gray-400"
-        />}
-      </div>)}
+      {!isSearchPage && (
+        <div
+          onClick={() =>
+            document
+              .querySelector("#card-section")
+              .scrollIntoView({ behavior: "smooth", block: "center" })
+          }
+          className="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-white  w-10 h-10 flex items-center justify-center rounded-full cursor-pointer shadow-md"
+        >
+          {
+            <Image
+              src="/images/arrow.svg"
+              alt="arrow icon"
+              width={20}
+              height={24}
+              className="text-gray-400"
+            />
+          }
+        </div>
+      )}
 
       {/* card content  */}
       <div id="card-section">
@@ -104,7 +107,7 @@ export default function PropertySearchForm() {
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder="Enter location"
-                className="w-full p-2 border border-gray-300 rounded-md bg-white text-gray-800 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-2 border border-gray-300 rounded-md bg-white text-gray-800 text-sm focus:ring-2 focus:ring-gray-800 focus:border-gray-800"
               />
             </div>
 
@@ -119,7 +122,7 @@ export default function PropertySearchForm() {
                 id="property_type"
                 value={property_type}
                 onChange={(e) => setPropertyType(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md bg-white text-gray-800 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-2 border border-gray-300 rounded-md bg-white text-gray-800 text-sm focus:ring-2 focus:ring-gray-800 focus:border-gray-800"
               >
                 <option value="House">House</option>
                 <option value="Plots">Plots</option>
@@ -143,7 +146,7 @@ export default function PropertySearchForm() {
                   value={priceMin}
                   onChange={(e) => setPriceMin(e.target.value)}
                   placeholder="Min"
-                  className="w-1/2 p-2 border border-gray-300 rounded-md bg-white text-gray-800 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-1/2 p-2 border border-gray-300 rounded-md bg-white text-gray-800 text-sm focus:ring-2 focus:ring-gray-800 focus:border-gray-800"
                 />
                 <input
                   id="priceMax"
@@ -151,7 +154,7 @@ export default function PropertySearchForm() {
                   value={priceMax}
                   onChange={(e) => setPriceMax(e.target.value)}
                   placeholder="Max"
-                  className="w-1/2 p-2 border border-gray-300 rounded-md bg-white text-gray-800 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-1/2 p-2 border border-gray-300 rounded-md bg-white text-gray-800 text-sm focus:ring-2 focus:ring-gray-800 focus:border-gray-800"
                 />
               </div>
             </div>
@@ -170,7 +173,7 @@ export default function PropertySearchForm() {
                   value={areaMin}
                   onChange={(e) => setAreaMin(e.target.value)}
                   placeholder="Min"
-                  className="w-1/2 p-2 border border-gray-300 rounded-md bg-white text-gray-800 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-1/2 p-2 border border-gray-300 rounded-md bg-white text-gray-800 text-sm focus:ring-2 focus:ring-gray-800 focus:border-gray-800"
                 />
                 <input
                   id="areaMax"
@@ -178,7 +181,7 @@ export default function PropertySearchForm() {
                   value={areaMax}
                   onChange={(e) => setAreaMax(e.target.value)}
                   placeholder="Max"
-                  className="w-1/2 p-2 border border-gray-300 rounded-md bg-white text-gray-800 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-1/2 p-2 border border-gray-300 rounded-md bg-white text-gray-800 text-sm focus:ring-2 focus:ring-gray-800 focus:border-gray-800"
                 />
               </div>
             </div>
@@ -196,16 +199,16 @@ export default function PropertySearchForm() {
                 value={bedrooms}
                 onChange={(e) => setBedrooms(e.target.value)}
                 placeholder="Bedrooms"
-                className="w-full p-2 border border-gray-300 rounded-md bg-white text-gray-800 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-2 border border-gray-300 rounded-md bg-white text-gray-800 text-sm focus:ring-2 focus:ring-gray-800 focus:border-gray-800"
               />
             </div>
           </form>
         </div>
-        <div className="px-6 py-4 bg-gray-50">
+        <div className="px-6 py-4">
           <button
             type="submit"
             onClick={handleSubmit}
-            className="w-full bg-black text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-300"
+            className="w-full bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-colors duration-300"
           >
             Find
           </button>
