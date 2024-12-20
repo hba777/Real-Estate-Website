@@ -1,75 +1,87 @@
 import { useState, useEffect } from "react";
-import { signInWithPopup, onAuthStateChanged } from "firebase/auth";
+import { signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
 import { auth, googleProvider } from "../utils/firebase";
 import { FcGoogle } from "react-icons/fc";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import Image from "next/image";
 
-const db = getFirestore(); // Initialize Firestore
+const db = getFirestore();
 
-export default function GoogleSignInButton () {
-  const [user, setUser] = useState(null); // State to track user info
+export default function GoogleSignInButton() {
+  const [user, setUser] = useState(null); // Track user info
+  const [showDropdown, setShowDropdown] = useState(false); // Toggle dropdown
 
   const handleGoogleSignIn = async () => {
     try {
-      // Sign in with Google
       const result = await signInWithPopup(auth, googleProvider);
       const loggedInUser = result.user;
 
-      // Prepare user data
       const userData = {
         Email: loggedInUser.email,
-        id: loggedInUser.uid, // Store the Firebase UID as the document ID
-        Image: loggedInUser.photoURL || "/default-profile-pic.jpg", // Fallback image
-        pushToken: "", // Add logic for push notifications if needed
+        id: loggedInUser.uid,
+        Image: loggedInUser.photoURL || "/default-profile-pic.jpg",
         Name: loggedInUser.displayName || "Anonymous",
       };
 
-      // Save user data to Firestore
-      const userDoc = doc(db, "users", loggedInUser.uid); // Use UID as the document ID
-      await setDoc(userDoc, userData, { merge: true }); // Merge to avoid overwriting existing data
+      const userDoc = doc(db, "users", loggedInUser.uid);
+      await setDoc(userDoc, userData, { merge: true });
 
-      console.log("User signed in and data saved:", userData);
-
-      // Set the signed-in user data in state
       setUser(userData);
     } catch (error) {
       console.error("Error during Google sign-in:", error.message);
     }
   };
 
-  // Check if user is already signed in on app load
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth); // Firebase sign-out
+      setUser(null); // Clear user state
+      setShowDropdown(false); // Hide dropdown
+    } catch (error) {
+      console.error("Error during sign-out:", error.message);
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
-        // If user is signed in, fetch the user info from Firebase
         const userData = {
           Email: currentUser.email,
           id: currentUser.uid,
           Image: currentUser.photoURL || "/default-profile-pic.jpg",
           Name: currentUser.displayName || "Anonymous",
         };
-        setUser(userData); // Update state with user info
+        setUser(userData);
       } else {
-        setUser(null); // Set user to null if not signed in
+        setUser(null);
       }
     });
 
-    // Cleanup the listener on component unmount
     return () => unsubscribe();
   }, []);
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="relative">
       {user ? (
-        // If user is signed in, show profile image in a circle
-        <Image
-          src={user.Image} // Display user's image or fallback to default image
-          alt={user.Name}
-          className="w-12 h-12 rounded-full border-2 border-gray-300"
-        />
+        <div className="relative">
+          <Image
+            src={user.Image}
+            alt={user.Name}
+            className="w-12 h-12 rounded-full cursor-pointer"
+            onClick={() => setShowDropdown(!showDropdown)} // Toggle dropdown
+          />
+          {showDropdown && (
+            <div className="absolute right-0 mt-2 bg-white border rounded shadow">
+              <button
+                onClick={handleSignOut}
+                className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-200"
+              >
+                Sign Out
+              </button>
+            </div>
+          )}
+        </div>
       ) : (
-        // If user is not signed in, show Google sign-in button
         <button
           onClick={handleGoogleSignIn}
           className="flex items-center gap-2 px-4 py-2 bg-green-400 rounded shadow hover:bg-green-300"
@@ -80,5 +92,4 @@ export default function GoogleSignInButton () {
       )}
     </div>
   );
-};
-
+}

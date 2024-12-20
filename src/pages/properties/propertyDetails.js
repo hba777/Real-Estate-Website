@@ -1,5 +1,6 @@
 // src/components/PropertyDetails.js
 
+import BookmarkButton from "@/components/bookmarkButton";
 import PropertyMapButton from "@/components/Map";
 import PropertyCard from "@/components/propertyCard";
 import PropertyDetailsTable from "@/components/propertyDetailsTable";
@@ -50,6 +51,7 @@ const PropertyDetails = () => {
           {/* Buttons Section */}
           <div className="ml-0 md:ml-9 mt-4 md:mt-0 p-3 flex flex-col gap-3">
             <PropertyMapButton property={property} />
+            <BookmarkButton property={property} />
             <WhatsAppButton />
           </div>
         </div>
