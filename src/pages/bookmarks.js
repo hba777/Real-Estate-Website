@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore"; // Import updateDoc for updating Firestore
 import { useAuthState } from "react-firebase-hooks/auth";
 import { firestore, auth } from "@/utils/firebase";
-import PropertyCard from "@/components/PropertyCard";
+import PropertyCard from "@/components/propertyCard";
 
 export default function Bookmarks() {
   const [user, loading] = useAuthState(auth);
