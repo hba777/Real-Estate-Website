@@ -155,6 +155,7 @@ export default function Header() {
             >
               Contact Us
             </button>
+
             <div className="relative">
               {user ? (
                 <>

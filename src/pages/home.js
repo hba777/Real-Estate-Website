@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import Hero from "@/components/hero";
 import PropertySearch from "@/components/PropertySearchForm";
 import ContactUs from "@/components/contactUs";
-import Footer from "@/components/footer";
 import AutoCarousel from "@/components/Carousel";
 
 const HomePage = () => {
@@ -35,7 +34,6 @@ const HomePage = () => {
       <PropertySearch />
       <AutoCarousel />
       <ContactUs />
-      <Footer />
     </>
   );
 };

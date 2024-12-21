@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import { auth, googleProvider } from "@/utils/firebase";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
+import Footer from "@/components/footer";
 
 const db = getFirestore();
 
@@ -57,6 +58,7 @@ export default function App({ Component, pageProps }) {
     <ThemeProvider enableSystem={true} attribute="class">
       <Header handleGoogleSignIn={handleGoogleSignIn} user={user} />
       <Component {...pageProps} />
+      <Footer/>
     </ThemeProvider>
   );
 }
