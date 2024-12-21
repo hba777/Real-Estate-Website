@@ -78,22 +78,6 @@ export default function ReviewSection() {
 
   return (
     <div className="relative p-4 mb-4">
-      {/* Theme Toggle Button */}
-      <motion.button
-        className="absolute right-8 top-8 p-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        transition={{ duration: 0.3 }}
-      >
-        {theme === "dark" ? (
-          <Sun className="h-5 w-5" />
-        ) : (
-          <Moon className="h-5 w-5" />
-        )}
-        <span className="sr-only">Toggle theme</span>
-      </motion.button>
-
       <motion.div
         className="relative justify-center items-center"
         initial="hidden"
