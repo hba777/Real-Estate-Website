@@ -84,13 +84,11 @@ const HomePage = () => {
         className="fade-in opacity-0 transform translate-x-10 transition-all duration-700 ease-out"
       >
         <ReviewSection/>
-        <ReviewSection/>
       </div>
       <div
         ref={addToRefs}
         className="fade-in opacity-0 transform translate-x-10 transition-all duration-700 ease-out"
       >
-        <Services/>
         <Services/>
       </div>
       <div
@@ -98,7 +96,6 @@ const HomePage = () => {
         id="contact-form"
         className="fade-in opacity-0 transform translate-x-10 transition-all duration-700 ease-out"
       >
-        <ContactForm />
         <ContactForm />
       </div>
     </>
