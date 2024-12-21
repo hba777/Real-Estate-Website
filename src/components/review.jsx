@@ -1,115 +1,124 @@
-import Image from 'next/image';
-import React from 'react';
+"use client";
 
-import userImg from '../assets/images/user1.png';
-import userImg1 from '../assets/images/user2.png';
-import userImg2 from '../assets/images/user3.png';
+import React from "react";
+import { useTheme } from "next-themes";
+import { Moon, Sun } from "lucide-react";
+import { motion } from "framer-motion";
 
-const Review = () => {
-  return (
-    <div id="reviews" className="relative p-4 mb-4">
-      <div className="flex justify-center items-center  p-3">
-        <button className="mt-[90px] mb-4 bg-blue-200 hover:bg-blue-600 px-4 py-1 rounded-2xl text-blue-500 hover:text-white h-8 w-28 font-black text-xs uppercase cursor-pointer ">
-          reviews
-        </button>
-      </div>
-      <div className="relative ">
-        <div className="flex flex-col justify-center items-center">
-          <p className="text-[90px] sm:text-[180px] text-blue-700 opacity-5 font-black text-center z-0 absolute top-0 left-0 w-full uppercase dark:text-white">
-            reviews
-          </p>
-          <p className="text-4xl text-blue-900 font-bold text-center z-20 relative capitalize mt-10 sm:mt-28 dark:text-gray-300">
-            what our customers say
-          </p>
-        </div>
-      </div>
-
-      <div className="relative justify-center items-center">
-        <p className="font-medium text-base text-center mt-20  text-bluePText">
-          &quot;A well-designed real estate website can be the bridge
-          <br /> that connects buyers to their dream homes,
-          <br /> and sellers to the right buyers.&quot;
+const ReviewCard = ({ content, author, location, index }) => (
+  <motion.div
+    className="flex flex-col mb-5 w-full sm:w-[350px]"
+    initial={{ opacity: 0, y: 50 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{
+      duration: 0.6,
+      ease: "easeOut",
+      delay: 0.2 + index * 0.1, // Stagger the animations
+    }}
+  >
+    <motion.div
+      className="h-auto min-h-[160px] flex items-start p-6 bg-white dark:bg-gray-800 shadow-md rounded-lg border border-gray-200 dark:border-gray-700"
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.3 }}
+    >
+      <p className="font-semibold text-sm leading-6 text-gray-700 dark:text-gray-300">
+        {content}
+      </p>
+    </motion.div>
+    <motion.div
+      className="flex items-start gap-5 mt-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
+    >
+      <div className="flex flex-col justify-center items-start">
+        <p className="font-bold text-sm leading-7 text-gray-900 dark:text-white capitalize">
+          {author}
+        </p>
+        <p className="font-semibold text-xs text-gray-500 dark:text-gray-400">
+          {location}
         </p>
       </div>
+    </motion.div>
+  </motion.div>
+);
 
-      <div className="flex flex-col sm:flex-row justify-center items-center mt-[60px] ml-[30px]  ">
-        <div className=" flex flex-col mb-5">
-          <div className="w-[350px] h-[160px] flex items-start p-[30px] gap-[10px] bg-white  dark:bg-slate-700 shadow-md rounded-[10px] ">
-            <p className=" font-semibold text-[13px] leading-[25px] text-bluePText dark:text-white">
-              Thank you very much for the house found. This is an ideal option
-              for our family at the location and price. The company employs real
-              professionals who will always
-            </p>
-          </div>
-          <div className="flex items-start gap-5 w-auto h-[50px] mt-[30px]">
-            <Image
-              src={userImg}
-              alt="user "
-              className="w-[50px] h-[50px] bg-[#8833FF4D] rounded-full ml-4"
-            />
-            <div className="flex flex-col justify-center items-start">
-              <p className="font-bold text-sm leading-[30px] text-cardText capitalize  dark:text-white">
-                herbert lindsey
-              </p>
-              <p className="font-semibold text-xs text-blueCardSubTitle leading-5">
-                New York, USA
-              </p>
-            </div>
-          </div>
-        </div>
+export default function ReviewSection() {
+  const { theme, setTheme } = useTheme();
 
-        <div className=" flex flex-col mb-5">
-          <div className="w-[350px] h-[185px] flex items-start p-[30px] gap-[10px] bg-white  dark:bg-slate-700 shadow-md rounded-[10px] ml-[30px]  ">
-            <p className=" font-semibold text-[13px] leading-[25px] text-bluePText dark:text-white">
-              A gentleman from New York discovered what he calls an “oversight”
-              on the part of 99.9% of all marketers that allows him to get
-              otherwise paid-for advertising at Google as well as all other
-              search engines.
-            </p>
-          </div>
-          <div className="flex items-start gap-5 w-auto h-[50px] mt-[30px]">
-            <Image
-              src={userImg1}
-              alt="user "
-              className="w-[50px] h-[50px] bg-[#CC74294D] rounded-full ml-12"
-            />
-            <div className="flex flex-col justify-center items-start">
-              <p className="font-bold text-sm leading-[30px] text-cardText capitalize  dark:text-white">
-                Noah Russell
-              </p>
-              <p className="font-semibold text-xs text-blueCardSubTitle leading-5">
-                New York, USA
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col mb-5">
-          <div className="w-[350px] h-[160px] flex items-start p-[30px] gap-[10px] bg-white  dark:bg-slate-700 shadow-md rounded-[10px] ml-[30px] ">
-            <p className=" font-semibold text-[13px] leading-[25px] text-bluePText dark:text-white">
-              For many of us, our very first experience of learning about the
-              celestial bodies begins when we saw our first full moon in the
-              sky. It is truly a magnificent view even
-            </p>
-          </div>
-          <div className="flex items-start gap-5 w-auto h-[50px] mt-[30px]">
-            <Image
-              src={userImg2}
-              alt="user "
-              className="w-[50px] h-[50px] bg-[#E62E7B4D] rounded-full ml-12"
-            />
-            <div className="flex flex-col justify-center items-start">
-              <p className="font-bold text-sm leading-[30px] text-cardText capitalize  dark:text-white">
-                Nellie Griffith
-              </p>
-              <p className="font-semibold text-xs text-blueCardSubTitle leading-5">
-                New York, USA
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+  const reviews = [
+    {
+      content:
+        "Thank you very much for the house found. This is an ideal option for our family at the location and price. The company employs real professionals who will always go the extra mile.",
+      author: "Herbert Lindsey",
+      location: "New York, USA",
+    },
+    {
+      content:
+        'A gentleman from New York discovered what he calls an "oversight" on the part of 99.9% of all marketers that allows him to get otherwise paid-for advertising at Google as well as all other search engines.',
+      author: "Noah Russell",
+      location: "New York, USA",
+    },
+    {
+      content:
+        "For many of us, our very first experience of learning about the celestial bodies begins when we saw our first full moon in the sky. It is truly a magnificent view even to this day.",
+      author: "Nellie Griffith",
+      location: "New York, USA",
+    },
+  ];
+
+  const quoteVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+
+  return (
+    <div className="relative p-4 mb-4">
+      {/* Theme Toggle Button */}
+      <motion.button
+        className="absolute right-8 top-8 p-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ duration: 0.3 }}
+      >
+        {theme === "dark" ? (
+          <Sun className="h-5 w-5" />
+        ) : (
+          <Moon className="h-5 w-5" />
+        )}
+        <span className="sr-only">Toggle theme</span>
+      </motion.button>
+
+      <motion.div
+        className="relative justify-center items-center"
+        initial="hidden"
+        animate="visible"
+        variants={quoteVariants}
+      >
+        <p className="font-medium text-base text-center mt-20 text-gray-800 dark:text-gray-200">
+          &quot;A well-designed real estate website can be the bridge
+          <br className="hidden sm:inline" /> that connects buyers to their
+          dream homes,
+          <br className="hidden sm:inline" /> and sellers to the right
+          buyers.&quot;
+        </p>
+      </motion.div>
+
+      <motion.div
+        className="flex flex-col sm:flex-row justify-center items-center mt-16 gap-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
+      >
+        {reviews.map((review, index) => (
+          <ReviewCard key={index} {...review} index={index} />
+        ))}
+      </motion.div>
     </div>
   );
-};
-
-export default Review;
+}

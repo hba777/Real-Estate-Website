@@ -6,7 +6,7 @@ export default function TestimonialSection() {
     <section className="relative min-h-[400px] w-full overflow-hidden mt-20">
       {/* Background Image */}
       <Image
-        src="/images/image.png" // Correct path to the image
+        src="/images/Image-4.webp"
         layout="fill"
         objectFit="cover"
         quality={85}

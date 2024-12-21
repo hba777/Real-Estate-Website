@@ -5,13 +5,6 @@ const Hero = ({ address, phone, email }) => {
   return (
     <section className="relative w-full h-screen">
       <div className="absolute inset-0">
-        {/* <Image
-          src="/images/heroBackground.png"
-          alt="Background image"
-          fill
-          className="w-full h-screen bg-no-repeat object-cover object-center"
-          priority // Optional: Ensures the image loads quickly
-        /> */}
         <video
           src="/images/video2.mp4"
           autoPlay
@@ -20,6 +13,8 @@ const Hero = ({ address, phone, email }) => {
           className="w-full h-screen object-cover"
         />
       </div>
+
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white via-transparent to-black opacity-60"></div>
 
       <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-8 h-full items-center">

@@ -1,25 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation"; // Import useRouter
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function AutoCarousel3() {
   const [isHovered, setIsHovered] = useState(false);
-  const router = useRouter(); // Initialize useRouter
+  const router = useRouter();
+
   const slides = [
     { image: "/images/Image-2.webp" },
     { image: "/images/Image-3.webp" },
     { image: "/images/Image-6.webp" },
-    { image: "/images/Image-4.webp" },
     { image: "/images/Image-7.webp" },
-
     { image: "/images/Image-9.webp" },
   ];
 
-  // Function to handle "See All" button click
   const handleSeeAllClick = () => {
-    router.push("/search"); // Navigate to the search page
+    router.push("/search");
   };
 
   return (
@@ -33,7 +31,7 @@ export default function AutoCarousel3() {
           We Will Find The Best Options
         </h1>
         <button
-          onClick={handleSeeAllClick} // Add onClick handler here
+          onClick={handleSeeAllClick}
           className="flex items-center text-white hover:bg-slate-600 transition group py-2 px-4 box-border rounded-full bg-black"
         >
           See All
@@ -56,13 +54,13 @@ export default function AutoCarousel3() {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div
-          className="flex items-center w-[calc(400px*5)]" // Adjust width to match number of unique images
+          className="flex items-center"
           style={{
             animation: "scroll 60s linear infinite",
             animationPlayState: isHovered ? "paused" : "running",
           }}
         >
-          {slides.map((slide, index) => (
+          {[...slides, ...slides].map((slide, index) => (
             <div
               key={index}
               className="flex-shrink-0 w-[400px] px-2 relative rounded-2xl overflow-hidden"
@@ -70,7 +68,7 @@ export default function AutoCarousel3() {
               <div className="transition-transform duration-300 hover:scale-105 hover:rounded-lg w-full h-full">
                 <Image
                   src={slide.image}
-                  alt={`Image ${index + 1}`}
+                  alt={`Image ${(index % slides.length) + 1}`}
                   layout="responsive"
                   width={400}
                   height={400}

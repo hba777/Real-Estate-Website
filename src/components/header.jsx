@@ -101,7 +101,13 @@ export default function Header() {
               <circle cx="12" cy="12" r="10" />
               <polygon points="10 8 16 12 10 16 10 8" />
             </svg>
-            <span className="text-xl font-semibold">LONA</span>
+            <span
+              className={`text-xl font-bold px-4 py-2  transition-all duration-300 rounded-md ${
+                scrolled ? "border-transparent" : "border-black"
+              } bg-transparent text-black`}
+            >
+              <Link href="/">LONA</Link>
+            </span>
           </div>
 
           {/* Navigation Links */}
@@ -122,40 +128,24 @@ export default function Header() {
                 scrolled ? "bg-black text-white" : "bg-white text-black"
               } hover:bg-gray-10`} // Lighter hover effect
             >
-              Bookmarks
+              Contact Us
             </Link>
+
             <Link
-              href="#"
-              className={`px-4 py-2 text-sm transition ${
-                scrolled ? "bg-black text-white" : "bg-white text-black"
-              } hover:bg-gray-10`} // Lighter hover effect
-            >
-              Services
-            </Link>
-            <Link
-              href="#"
+              href="/bookmarks"
               className={`px-4 py-2 text-sm transition ${
                 scrolled
                   ? "bg-black text-white rounded-r-full"
                   : "bg-white text-black rounded-r-full"
               } hover:bg-gray-10`} // Lighter hover effect
             >
-              News
+              Bookmarks
             </Link>
           </div>
 
           {/* User Actions */}
           <div className="flex items-center space-x-4">
-            <button
-              className={`px-4 py-2 text-sm rounded-md transition ${
-                scrolled
-                  ? "bg-black text-white hover:bg-gray-700"
-                  : "bg-white text-black hover:bg-gray-100"
-              }`} // Lighter hover effect
-            >
-              Contact Us
-            </button>
-
+            {/* Sign-in Button */}
             <div className="relative">
               {user ? (
                 <>
@@ -188,10 +178,13 @@ export default function Header() {
                     scrolled
                       ? "bg-black text-white hover:bg-gray-700"
                       : "bg-white text-black hover:bg-gray-100"
-                  }`} // Lighter hover effect
+                  } sm:text-sm`} // Smaller text size on mobile
                 >
                   <FcGoogle className="text-xl" />
-                  <span>Sign in with Google</span>
+                  <span className="text-xs sm:text-sm">
+                    Sign in with Google
+                  </span>{" "}
+                  {/* Adjust text size */}
                 </button>
               )}
             </div>
