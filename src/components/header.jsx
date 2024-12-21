@@ -123,7 +123,7 @@ export default function Header() {
               Home
             </Link>
             <Link
-              href="/bookmarks"
+              href="#contact-form"
               className={`px-4 py-2 text-sm transition ${
                 scrolled ? "bg-black text-white" : "bg-white text-black"
               } hover:bg-gray-10`} // Lighter hover effect

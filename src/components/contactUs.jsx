@@ -27,7 +27,7 @@ export default function TestimonialSection() {
               <br />
               of our clients
             </h2>
-            <Link href="/contact" className="inline-block">
+            <Link href="#contact-form" className="inline-block">
               <button className="bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                 Ask us a question →
               </button>

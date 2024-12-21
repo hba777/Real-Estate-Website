@@ -4,6 +4,8 @@ import PropertySearch from "@/components/PropertySearchForm";
 import AutoCarousel from "@/components/Carousel";
 import ContactUs from "@/components/contactUs";
 import Review from "@/components/Review";
+import Services from "@/components/Services";
+import Form from "@/components/Form";
 
 const HomePage = () => {
   const [showButton, setShowButton] = useState(false);
@@ -72,15 +74,29 @@ const HomePage = () => {
       </div>
       <div
         ref={addToRefs}
-        className="fade-in opacity-0 transform translate-y-10 transition-all duration-700 ease-out"
+        className="fade-in opacity-0 translate-y-10 transition-all duration-700 ease-out"
       >
         <ContactUs />
       </div>
+
       <div
         ref={addToRefs}
         className="fade-in opacity-0 transform translate-x-10 transition-all duration-700 ease-out"
       >
         <Review />
+      </div>
+      <div
+        ref={addToRefs}
+        className="fade-in opacity-0 transform translate-x-10 transition-all duration-700 ease-out"
+      >
+        <Services />
+      </div>
+      <div
+        ref={addToRefs}
+        id="contact-form"
+        className="fade-in opacity-0 transform translate-x-10 transition-all duration-700 ease-out"
+      >
+        <Form />
       </div>
     </>
   );
