@@ -123,7 +123,9 @@ export default function Header() {
               Home
             </Link>
             <Link
-              href="#contact-form"
+              href="https://wa.me/03345098296" // Replace <PHONE_NUMBER> with the actual number
+              target="_blank" // Opens WhatsApp Web in a new tab
+              rel="noopener noreferrer" // Adds security
               className={`px-4 py-2 text-sm transition ${
                 scrolled ? "bg-black text-white" : "bg-white text-black"
               } hover:bg-gray-10`} // Lighter hover effect

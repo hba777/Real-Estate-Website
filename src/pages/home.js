@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Hero from "@/components/hero";
 import PropertySearch from "@/components/searchComponents/PropertySearchForm";
-import PropertySearch from "@/components/searchComponents/PropertySearchForm";
 import AutoCarousel from "@/components/Carousel";
 import ContactUs from "@/components/contactUs";
 import ReviewSection from "@/components/review";
