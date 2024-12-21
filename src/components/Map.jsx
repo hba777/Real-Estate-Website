@@ -28,7 +28,7 @@ const PropertyMapButton = ({ property }) => {
       {/* Map Button */}
       <button
         onClick={showLargeMap}
-        className="flex items-center px-4 py-2 bg-gray-300 text-gray-700 rounded-md shadow-md hover:bg-gray-400 transition duration-200"
+        className="flex items-center px-4 py-2 bg-white text-gray-700 border border-black rounded-md shadow-md hover:bg-gray-400 transition duration-200"
       >
         <FaMapMarkerAlt className="mr-2" />
         Map

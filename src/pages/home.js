@@ -3,10 +3,6 @@ import React, { useState, useEffect } from "react";
 import Hero from "@/components/hero";
 import PropertySearch from "@/components/PropertySearchForm";
 import ContactUs from "@/components/contactUs";
-import Footer from "@/components/footer";
-
-import { app, analytics } from "../utils/firebase";
-import AutoCarousel from "@/components/Carousel";
 import AutoCarousel3 from "@/components/Carousel3";
 
 const HomePage = () => {
@@ -38,7 +34,6 @@ const HomePage = () => {
       <PropertySearch />
       <AutoCarousel3 />
       <ContactUs />
-      <Footer />
     </>
   );
 };

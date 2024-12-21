@@ -62,7 +62,7 @@ export default function Header() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
+    <nav className="fixed top-0 left-0 right-0 z-40 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo Section */}
@@ -111,10 +111,16 @@ export default function Header() {
           </div>
 
           {/* User Actions */}
-          <div className="flex items-center space-x-4">
-            <button className="px-4 py-2 text-sm text-white bg-black rounded-md hover:bg-gray-800 transition">
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <button
+              onClick={() =>
+                window.open("https://wa.me/03345098296", "_blank")
+              }
+              className="px-4 py-2 text-sm text-white bg-black rounded-md hover:bg-gray-800 transition w-full sm:w-auto"
+            >
               Contact Us
             </button>
+
             <div className="relative">
               {user ? (
                 <>
@@ -143,7 +149,7 @@ export default function Header() {
               ) : (
                 <button
                   onClick={handleGoogleSignIn}
-                  className="flex items-center gap-2 px-4 py-2 bg-green-400 text-white rounded-md hover:bg-green-300 transition"
+                  className="flex items-center gap-2 px-4 py-2 bg-green-400 text-white rounded-md hover:bg-green-300 transition w-full sm:w-auto"
                 >
                   <FcGoogle className="text-xl" />
                   <span>Sign in with Google</span>

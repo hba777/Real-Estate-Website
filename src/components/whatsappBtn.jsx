@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function WhatsAppButton () {
   return (
     <a
-      href="https://web.whatsapp.com/" // Default WhatsApp Web link
+      href="https://wa.me/03345098296" // Default WhatsApp Web link
       target="_blank"
       rel="noopener noreferrer"
       className="flex items-center justify-center bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600 transition whitespace-nowrap" // Added `whitespace-nowrap`

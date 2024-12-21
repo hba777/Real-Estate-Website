@@ -18,6 +18,7 @@ const BookmarkButton = ({ property }) => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [showSignInPopup, setShowSignInPopup] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -50,7 +51,7 @@ const BookmarkButton = ({ property }) => {
 
   const handleBookmarkClick = async () => {
     if (!isSignedIn) {
-      router.push("/signin");
+      setShowSignInPopup(true);
       return;
     }
 
@@ -80,17 +81,37 @@ const BookmarkButton = ({ property }) => {
   };
 
   return (
-    <button
-      onClick={handleBookmarkClick}
-      className="flex items-center gap-2 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition"
-    >
-      {isBookmarked ? (
-        <BsBookmarkFill className="text-lg text-blue-500" />
-      ) : (
-        <BsBookmark className="text-lg" />
+    <>
+      <button
+        onClick={handleBookmarkClick}
+        className="flex items-center gap-2 px-4 py-2 bg-white rounded hover:bg-gray-300 border border-black transition"
+      >
+        {isBookmarked ? (
+          <BsBookmarkFill className="text-lg text-blue-500" />
+        ) : (
+          <BsBookmark className="text-lg" />
+        )}
+        <span>{isBookmarked ? "Bookmarked" : "Bookmark"}</span>
+      </button>
+
+      {showSignInPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded shadow-lg text-center">
+            <h2 className="text-lg font-semibold mb-4">
+              Please sign in to bookmark properties
+            </h2>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button
+                onClick={() => setShowSignInPopup(false)}
+                className="text-gray-500 hover:underline border border-black rounded px-4 py-2 transition"
+              >
+                Okay!
+              </button>
+            </div>
+          </div>
+        </div>
       )}
-      <span>{isBookmarked ? "Bookmarked" : "Bookmark"}</span>
-    </button>
+    </>
   );
 };
 
