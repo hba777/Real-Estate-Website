@@ -19,15 +19,18 @@ export default function TestimonialSection() {
         <div className="flex flex-col lg:flex-row items-start justify-between gap-8">
           {/* Text Content and Button (on the left for large screens) */}
           <div className="lg:w-1/2 space-y-8">
-            <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+            <h2
+              className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl"
+              style={{ fontFamily: "Trirong, sans-serif" }}
+            >
               Positive stories
               <br />
               of our clients
             </h2>
-            <Link href="/contact" className="inline-block" >
-                <button className="bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                  Ask us a question →
-                </button>
+            <Link href="/contact" className="inline-block">
+              <button className="bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                Ask us a question →
+              </button>
             </Link>
           </div>
 
@@ -60,8 +63,8 @@ export default function TestimonialSection() {
                   natural wood elements perfectly. The highlight was definitely
                   the glass ceiling, offering breathtaking forest views. We
                   spent our days hiking nearby trails and our evenings
-                  stargazing by the fireplace. I can&apos;t imagine a more perfect
-                  escape from the city.&quot;
+                  stargazing by the fireplace. I can&apos;t imagine a more
+                  perfect escape from the city.&quot;
                 </p>
               </div>
             </div>

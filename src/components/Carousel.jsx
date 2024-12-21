@@ -1,139 +1,97 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, MoveRight } from "lucide-react";
 
-export default function AutoCarousel() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
+export default function AutoCarousel3() {
+  const [isHovered, setIsHovered] = useState(false);
+  const router = useRouter(); // Initialize useRouter
   const slides = [
-    {
-      image: "/images/Image-8.png",
-      expert: "PAIGE SCHULTE",
-    },
-    {
-      image: "/images/Image-2.png",
-      expert: "JOHN SMITH",
-    },
-    {
-      image: "/images/Image-3.png",
-      expert: "SARAH JONES",
-    },
-    {
-      image: "/images/Image-4.png",
-      expert: "JANE DOE",
-    },
-    {
-      image: "/images/Image-5.png",
-      expert: "ALICE WILLIAMS",
-    },
-    {
-      image: "/images/Image-6.png",
-      expert: "BOB MARTIN",
-    },
+    { image: "/images/Image-2.webp" },
+    { image: "/images/Image-3.webp" },
+    { image: "/images/Image-6.webp" },
+    { image: "/images/Image-4.webp" },
+    { image: "/images/Image-7.webp" },
+
+    { image: "/images/Image-9.webp" },
   ];
 
-  const imagesPerSlide = 3; // Number of images to show at a time
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide(
-        (prevSlide) => (prevSlide + 1) % (slides.length - imagesPerSlide + 1)
-      );
-    }, 3000);
-
-    return () => clearInterval(timer);
-  }, [slides.length]);
-
-  const nextSlide = () => {
-    setCurrentSlide(
-      (prevSlide) => (prevSlide + 1) % (slides.length - imagesPerSlide + 1)
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide(
-      (prevSlide) =>
-        (prevSlide - 1 + (slides.length - imagesPerSlide + 1)) %
-        (slides.length - imagesPerSlide + 1)
-    );
+  // Function to handle "See All" button click
+  const handleSeeAllClick = () => {
+    router.push("/search"); // Navigate to the search page
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4">
-      <div className="space-y-2 mb-8">
-        <div
-          className="text-sm text-blue-600"
-          style={{ fontFamily: "Trirong, sans-serif" }}
-        >
-          Local Experts
-        </div>
+    <div className="w-full mx-auto px-4">
+      {/* text and button */}
+      <div className="flex justify-between items-center mt-20 mb-5">
         <h1
-          className="text-4xl font-bold tracking-tight text-gray-900"
+          className="text-2xl tracking-tight text-gray-900 font-semibold"
           style={{ fontFamily: "Trirong, sans-serif" }}
         >
-          Discover Your Local Real
-          <br />
-          Estate Specialist
+          We Will Find The Best Options
         </h1>
+        <button
+          onClick={handleSeeAllClick} // Add onClick handler here
+          className="flex items-center text-white hover:bg-slate-600 transition group py-2 px-4 box-border rounded-full bg-black"
+        >
+          See All
+          <span className="ml-2 transform transition-transform group-hover:translate-x-1">
+            <Image
+              src="/images/right-arrow.svg"
+              alt="see more icon"
+              width={10}
+              height={2}
+              className="text-gray-400"
+            />
+          </span>
+        </button>
       </div>
 
-      <div className="relative">
-        {/* slider  */}
-        <div className="overflow-hidden">
-          {/* slidetrack  */}
-          <div
-            className="flex transition-transform duration-500 ease-out"
-            style={{
-              transform: `translateX(-${
-                currentSlide * (100 / imagesPerSlide)
-              }%)`,
-            }}
-          >
-            {slides.map((slide, index) => (
-              <div key={index} className="w-1/3 flex-shrink-0 px-2">
-                <div className="relative rounded-2xl overflow-hidden bg-gradient-to-b from-blue-100 to-blue-50 group">
-                  <Image
-                    src={slide.image}
-                    alt={`Real estate specialist ${slide.expert}`}
-                    layout="responsive"
-                    width={400}
-                    height={400}
-                    className="object-cover"
-                  />
-                  <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm font-medium tracking-wide">
-                    {slide.expert}
-                  </div>
-                  {slide.hasAction && (
-                    <button className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white p-2 rounded-full hover:bg-black/60 transition-colors">
-                      <MoveRight className="h-4 w-4" />
-                    </button>
-                  )}
-                </div>
+      {/* carousel */}
+      <div
+        className="relative overflow-hidden w-full"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div
+          className="flex items-center w-[calc(400px*5)]" // Adjust width to match number of unique images
+          style={{
+            animation: "scroll 60s linear infinite",
+            animationPlayState: isHovered ? "paused" : "running",
+          }}
+        >
+          {slides.map((slide, index) => (
+            <div
+              key={index}
+              className="flex-shrink-0 w-[400px] px-2 relative rounded-2xl overflow-hidden"
+            >
+              <div className="transition-transform duration-300 hover:scale-105 hover:rounded-lg w-full h-full">
+                <Image
+                  src={slide.image}
+                  alt={`Image ${index + 1}`}
+                  layout="responsive"
+                  width={400}
+                  height={400}
+                  className="object-cover rounded-2xl"
+                />
               </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="absolute right-6 bottom-6 flex gap-2">
-          <button
-            onClick={prevSlide}
-            className="bg-white rounded-full p-3 shadow-lg hover:bg-gray-50 transition-colors focus:outline-none"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft className="h-5 w-5 text-gray-800" />
-          </button>
-
-          <button
-            onClick={nextSlide}
-            className="bg-white rounded-full p-3 shadow-lg hover:bg-gray-50 transition-colors focus:outline-none"
-            aria-label="Next slide"
-          >
-            <ChevronRight className="h-5 w-5 text-gray-800" />
-          </button>
+            </div>
+          ))}
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+      `}</style>
     </div>
   );
 }

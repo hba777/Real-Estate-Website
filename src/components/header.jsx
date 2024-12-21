@@ -11,6 +11,7 @@ const db = getFirestore();
 export default function Header() {
   const [user, setUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const handleGoogleSignIn = async () => {
     try {
@@ -58,17 +59,38 @@ export default function Header() {
       }
     });
 
-    return () => unsubscribe();
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      unsubscribe();
+    };
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all ${
+        scrolled ? "bg-transparent" : "bg-transparent"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo Section */}
-          <div className="flex items-center space-x-2">
+          <div
+            className={`flex items-center space-x-2 ${
+              scrolled ? "text-black" : "text-white"
+            }`}
+          >
             <svg
-              className="h-6 w-6 text-black"
+              className="h-6 w-6"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -79,32 +101,44 @@ export default function Header() {
               <circle cx="12" cy="12" r="10" />
               <polygon points="10 8 16 12 10 16 10 8" />
             </svg>
-            <span className="text-xl text-black font-semibold">LONA</span>
+            <span className="text-xl font-semibold">LONA</span>
           </div>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center border border-black rounded-md overflow-hidden">
+          <div className="hidden md:flex items-center">
             <Link
               href="/"
-              className="px-4 py-2 text-sm text-black bg-white hover:bg-gray-100 transition"
+              className={`px-4 py-2 text-sm transition ${
+                scrolled
+                  ? "bg-black text-white rounded-l-full"
+                  : "bg-white text-black rounded-l-full"
+              } hover:bg-gray-10`} // Lighter hover effect
             >
               Home
             </Link>
             <Link
               href="/bookmarks"
-              className="px-4 py-2 text-sm text-black bg-white hover:bg-gray-100 transition"
+              className={`px-4 py-2 text-sm transition ${
+                scrolled ? "bg-black text-white" : "bg-white text-black"
+              } hover:bg-gray-10`} // Lighter hover effect
             >
               Bookmarks
             </Link>
             <Link
               href="#"
-              className="px-4 py-2 text-sm text-black bg-white hover:bg-gray-100 transition"
+              className={`px-4 py-2 text-sm transition ${
+                scrolled ? "bg-black text-white" : "bg-white text-black"
+              } hover:bg-gray-10`} // Lighter hover effect
             >
               Services
             </Link>
             <Link
               href="#"
-              className="px-4 py-2 text-sm text-black bg-white hover:bg-gray-100 transition"
+              className={`px-4 py-2 text-sm transition ${
+                scrolled
+                  ? "bg-black text-white rounded-r-full"
+                  : "bg-white text-black rounded-r-full"
+              } hover:bg-gray-10`} // Lighter hover effect
             >
               News
             </Link>
@@ -112,7 +146,13 @@ export default function Header() {
 
           {/* User Actions */}
           <div className="flex items-center space-x-4">
-            <button className="px-4 py-2 text-sm text-white bg-black rounded-md hover:bg-gray-800 transition">
+            <button
+              className={`px-4 py-2 text-sm rounded-md transition ${
+                scrolled
+                  ? "bg-black text-white hover:bg-gray-700"
+                  : "bg-white text-black hover:bg-gray-100"
+              }`} // Lighter hover effect
+            >
               Contact Us
             </button>
             <div className="relative">
@@ -143,7 +183,11 @@ export default function Header() {
               ) : (
                 <button
                   onClick={handleGoogleSignIn}
-                  className="flex items-center gap-2 px-4 py-2 bg-green-400 text-white rounded-md hover:bg-green-300 transition"
+                  className={`flex items-center gap-2 px-4 py-2 rounded-md transition ${
+                    scrolled
+                      ? "bg-black text-white hover:bg-gray-700"
+                      : "bg-white text-black hover:bg-gray-100"
+                  }`} // Lighter hover effect
                 >
                   <FcGoogle className="text-xl" />
                   <span>Sign in with Google</span>
