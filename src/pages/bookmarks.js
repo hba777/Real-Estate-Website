@@ -102,7 +102,7 @@ import { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { firestore, auth } from "@/utils/firebase";
-import SearchResultCard from "@/components/SearchResultCard";
+import SearchResultCard from "@/components/searchComponents/SearchResultCard";
 import { useRouter } from "next/router";
 
 export default function Bookmarks() {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Card from "./SearchResultCard";
+import Card from "./searchComponents/SearchResultCard";
 
 const HomeCardComponent = () => {
   const [properties, setProperties] = useState([]);

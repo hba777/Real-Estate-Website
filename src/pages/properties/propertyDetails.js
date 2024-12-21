@@ -1,39 +1,20 @@
 import BookmarkButton from "@/components/bookmarkButton";
-import PropertyMapButton from "@/components/Map";
-import PropertyCard from "@/components/propertyCard";
-import PropertyDetailsTable from "@/components/propertyDetailsTable";
+import PropertyMapButton from "@/components/propertyDetailsComponents/Map";
+import PropertyCard from "@/components/propertyDetailsComponents/propertyCard";
+import PropertyDetailsTable from "@/components/propertyDetailsComponents/propertyDetailsTable";
 import WhatsAppButton from "@/components/whatsappBtn";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const PropertyDetails = () => {
-  const router = useRouter();
   const [property, setProperty] = useState(null);
 
   useEffect(() => {
-    const fetchProperty = async () => {
-      const propertyId = router.query.id;
-      if (!propertyId) {
-        return;
-      }
-
-      // Fetch the property details using the property ID
-      try {
-        const response = await fetch(`/api/properties/${propertyId}`);
-        if (!response.ok) throw new Error("Property not found");
-        const data = await response.json();
-        setProperty(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    if (router.query.id) {
-      fetchProperty();
+    // Retrieve the property from session storage
+    const storedProperty = sessionStorage.getItem("selectedProperty");
+    if (storedProperty) {
+      setProperty(JSON.parse(storedProperty));
     }
-  }, [router.query]);
-
-  console.log("Property Details Screen", property);
+  }, []);
 
   if (!property) {
     return <p>Loading...</p>;
@@ -51,7 +32,7 @@ const PropertyDetails = () => {
           <PropertyCard
             images={property.images}
             price={property.price}
-            address={property.locality}
+            address={property.locality || property.address}
             bedrooms={property.bedrooms}
             baths={property.baths}
             area={property.area}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import SearchResultCard from "./SearchResultCard";
+import SearchResultCard from "./searchComponents/SearchResultCard";
 
 export default function PropertySearchList() {
   const [properties, setProperties] = useState([]);

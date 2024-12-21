@@ -1,4 +1,4 @@
-import PropertySearchForm from "@/components/PropertySearchForm";
+import PropertySearchForm from "@/components/searchComponents/PropertySearchForm";
 import PropertySearchList from "@/components/propertySearchList";
 
 const SearchPage = () => {
