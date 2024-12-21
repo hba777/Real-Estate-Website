@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import Hero from "@/components/hero";
-import PropertySearch from "@/components/PropertySearchForm";
+import PropertySearch from "@/components/searchComponents/PropertySearchForm";
 import AutoCarousel from "@/components/Carousel";
 import ContactUs from "@/components/contactUs";
-import Review from "@/components/Review";
-import Services from "@/components/Services";
-import Form from "@/components/Form";
+import ReviewSection from "@/components/review";
+import Services from "@/components/services";
+import ContactForm from "@/components/form";
 
 const HomePage = () => {
   const [showButton, setShowButton] = useState(false);
@@ -83,20 +83,20 @@ const HomePage = () => {
         ref={addToRefs}
         className="fade-in opacity-0 transform translate-x-10 transition-all duration-700 ease-out"
       >
-        <Review />
+        <ReviewSection/>
       </div>
       <div
         ref={addToRefs}
         className="fade-in opacity-0 transform translate-x-10 transition-all duration-700 ease-out"
       >
-        <Services />
+        <Services/>
       </div>
       <div
         ref={addToRefs}
         id="contact-form"
         className="fade-in opacity-0 transform translate-x-10 transition-all duration-700 ease-out"
       >
-        <Form />
+        <ContactForm />
       </div>
     </>
   );

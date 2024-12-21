@@ -2,7 +2,6 @@
 
 import React from "react";
 import { useTheme } from "next-themes";
-import { Moon, Sun } from "lucide-react";
 import { motion } from "framer-motion";
 
 const ReviewCard = ({ content, author, location, index }) => (
