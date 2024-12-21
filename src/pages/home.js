@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Hero from "@/components/hero";
 import PropertySearch from "@/components/PropertySearchForm";
 import ContactUs from "@/components/contactUs";
-import AutoCarousel3 from "@/components/Carousel3";
+import AutoCarousel from "@/components/Carousel";
 
 const HomePage = () => {
   const [showButton, setShowButton] = useState(false);
@@ -32,7 +32,7 @@ const HomePage = () => {
     <>
       <Hero />
       <PropertySearch />
-      <AutoCarousel3 />
+      <AutoCarousel />
       <ContactUs />
     </>
   );

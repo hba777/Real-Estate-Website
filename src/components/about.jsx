@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 export default function About({
   cardTitle1,
@@ -11,12 +11,6 @@ export default function About({
 }) {
   return (
     <div id="about-container" className="relative p-4 mb-4">
-      <div className="flex justify-center items-center">
-        <button className="relative mt-24 bg-green-200  hover:bg-green-600 px-4 py-1 rounded-2xl text-green-500 hover:text-white h-8 w-28 font-black text-xs uppercase cursor-pointer ">
-          Our Story
-        </button>
-      </div>
-
       <div className="relative ">
         <div className="flex flex-col justify-center items-center mt-20">
           <p

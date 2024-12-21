@@ -7,7 +7,7 @@ export default function PropertySearchList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const resultsPerPage = 10;
+  const resultsPerPage = 3;
 
   const router = useRouter();
   const {
@@ -119,7 +119,7 @@ export default function PropertySearchList() {
     <div className="min-h-screen px-5">
       {paginatedProperties.length > 0 ? (
         <div>
-          <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 grid-cols-1">
             {paginatedProperties.map((property) => (
               <div
                 key={property.property_id}
@@ -157,10 +157,10 @@ export default function PropertySearchList() {
           </div>
         </div>
       ) : (
-        <div className="text-gray-700 text-center">
+        <div className="text-gray-500 text-center mt-20">
           No properties found matching your criteria.
         </div>
       )}
     </div>
   );
-};
+}
