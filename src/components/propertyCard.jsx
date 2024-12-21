@@ -10,22 +10,22 @@ export default function PropertyCard({
   area,
 }) {
   return (
-    <div className="max-w-md mx-auto overflow-hidden shadow-lg rounded-lg border border-gray-200">
+    <div className="max-w-sm mx-auto overflow-hidden shadow-lg rounded-lg border border-gray-200">
       {/* Image Section */}
-      <div className="relative aspect-[16/9] overflow-hidden">
+      <div className="relative aspect-square overflow-hidden">
         {images.length > 0 ? (
           <Image
             src={`data:image/jpeg;base64,${images[0]}`} // Adjust to your image type
             alt="Property image"
-            width={600}
+            width={400}
             height={400}
             className="object-cover hover:scale-105 transition-transform duration-300"
           />
         ) : (
           <Image
-            src="/placeholder.svg?height=400&width=600"
+            src="/placeholder.svg?height=400&width=400"
             alt="Placeholder image"
-            width={600}
+            width={400}
             height={400}
             className="object-cover"
           />
