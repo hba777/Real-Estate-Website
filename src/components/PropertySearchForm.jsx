@@ -8,11 +8,11 @@ export default function PropertySearchForm() {
   const [city, setCity] = useState("Islamabad");
   const [location, setLocation] = useState("");
   const [property_type, setPropertyType] = useState("House");
-  const [priceMin, setPriceMin] = useState("0");
+  const [priceMin, setPriceMin] = useState("");
   const [priceMax, setPriceMax] = useState("");
-  const [areaMin, setAreaMin] = useState("0");
+  const [areaMin, setAreaMin] = useState("");
   const [areaMax, setAreaMax] = useState("");
-  const [bedrooms, setBedrooms] = useState("1");
+  const [bedrooms, setBedrooms] = useState("");
 
   const router = useRouter();
   const pathname = usePathname();
