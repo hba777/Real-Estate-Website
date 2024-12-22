@@ -42,7 +42,7 @@ const PropertyDetails = () => {
           <div className="ml-0 md:ml-9 mt-4 md:mt-0 p-3 flex flex-col gap-3">
             <PropertyMapButton property={property} />
             <BookmarkButton property={property} />
-            <WhatsAppButton />
+            <WhatsAppButton property={property} />
           </div>
         </div>
       </div>
