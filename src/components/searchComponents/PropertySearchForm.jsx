@@ -205,7 +205,7 @@ export default function PropertySearchForm() {
             {/* here  */}
           </form>
         </div>
-        <div className="px-6 py-4 bg-gray-50">
+        <div className="px-6 py-4">
           <button
             type="submit"
             onClick={handleSubmit}

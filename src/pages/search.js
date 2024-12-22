@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import PropertySearchForm from "@/components/searchComponents/PropertySearchForm";
-import PropertySearchList from "@/components/propertySearchList";
+import PropertySearchList from "@/components/searchComponents/propertySearchList";
 
 const SearchPage = () => {
   const [showButton, setShowButton] = useState(false);
@@ -31,8 +31,6 @@ const SearchPage = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("opacity-100", "transform-none"); // Trigger animation
-          } else {
-            entry.target.classList.remove("opacity-100", "transform-none");
           }
         });
       },
@@ -50,9 +48,9 @@ const SearchPage = () => {
       });
     };
   }, []);
+
   return (
     <>
-      {/* dark:bg-bgDark for dark mode */}
       <div className="flex flex-col px-4 py-6 bg-[#fafafa]">
         <div>
           <div

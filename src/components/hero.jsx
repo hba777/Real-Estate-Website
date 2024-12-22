@@ -37,10 +37,15 @@ const Hero = ({ address, phone, email }) => {
 
           <div className="lg:max-w-xl relative">
             <div className="absolute inset-0 bg-white opacity-10 rounded-tl-3xl rounded-bl-3xl"></div>
-            <p className="absolute right-6 top-1/2 -translate-y-1/2 max-w-md p-6 text-lg text-white bg-transparent rounded-tr-2xl before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:border-t before:border-l before:border-white/30 before:rounded-tl-2xl">
-              When it comes to real estate in Pierce &amp; Kitsap counties,
-              trust us to guide you through every step. We&#39;ve got the
-              expertise and dedication you need for a smooth transaction.
+            <p
+              style={{ fontFamily: "Trirong, sans-serif" }}
+              className="absolute right-6 top-1/2 -translate-y-1/2 max-w-md p-6 text-lg text-white bg-transparent rounded-tr-2xl before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:border-t before:border-l before:border-white/30 before:rounded-tl-2xl"
+            >
+              Welcome to <strong>Lona</strong> your trusted partner in
+              navigating real estate across Pierce and Kitsap counties. Our team
+              of local specialists is here to provide expert guidance and
+              unwavering support, ensuring your transaction is seamless and
+              stress-free.
             </p>
           </div>
         </div>

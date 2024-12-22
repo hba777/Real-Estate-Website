@@ -1,65 +1,105 @@
 import React from "react";
+import { Twitter, Github, Facebook, Linkedin, Instagram } from "lucide-react";
+
+const FooterLink = ({ href, children }) => (
+  <a
+    href={href}
+    className="text-gray-600 hover:text-gray-800 transition-colors duration-200"
+  >
+    {children}
+  </a>
+);
+
+const FooterLinkSection = ({ title, links }) => (
+  <div className="w-full sm:w-1/2 md:w-1/4 lg:w-1/5 mb-6">
+    <h3 className="text-gray-500 font-semibold text-sm uppercase mb-2">
+      {title}
+    </h3>
+    <ul className="list-none">
+      {links.map((link) => (
+        <li key={link.href} className="mb-2">
+          <FooterLink href={link.href}>{link.label}</FooterLink>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+const SocialIcon = ({ href, icon: Icon, label }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={label}
+    className="text-gray-600 hover:text-gray-800"
+  >
+    <Icon className="h-6 w-6" />
+  </a>
+);
 
 const Footer = () => {
-  return (
-    <footer className="relative bg-blueGray-200 pt-8 pb-6">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-wrap text-left lg:text-left">
-          <div className="w-full lg:w-6/12 px-4">
-            <h4 className="text-3xl font-semibold text-blueGray-700">
-              Let&apos;s keep in touch!
-            </h4>
-            <h5 className="text-lg mt-0 mb-2 text-blueGray-600">
-              Find us on any of these platforms, we respond 1-2 business days.
-            </h5>
-          </div>
-          <div className="w-full lg:w-6/12 px-4">
-            <div className="flex flex-wrap items-top mb-6">
-              <div className="w-full lg:w-4/12 px-4 ml-auto">
-                <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
-                  Useful Links
-                </span>
-                <ul className="list-unstyled">
-                  <li>
-                    <a
-                      className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                      href="https://www.creative-tim.com/presentation?ref=njs-profile"
-                    >
-                      About Us
-                    </a>
-                  </li>
+  const currentYear = new Date().getFullYear();
 
-                  <li>
-                    <a
-                      className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                      href="https://www.github.com/creativetimofficial?ref=njs-profile"
-                    >
-                      Github
-                    </a>
-                  </li>
-                  <li></li>
-                </ul>
-              </div>
+  const companyLinks = [
+    { href: "/about", label: "About Us" },
+    { href: "/contact", label: "Contact" },
+    { href: "/careers", label: "Careers" },
+  ];
+
+  const resourceLinks = [
+    { href: "/blog", label: "Blog" },
+    { href: "/faq", label: "FAQ" },
+    { href: "/support", label: "Support" },
+  ];
+
+  const legalLinks = [
+    { href: "/terms", label: "Terms of Service" },
+    { href: "/privacy", label: "Privacy Policy" },
+    { href: "/cookies", label: "Cookie Policy" },
+  ];
+
+  const socialLinks = [
+    { href: "https://twitter.com", icon: Twitter, label: "Twitter" },
+    { href: "https://github.com", icon: Github, label: "GitHub" },
+    { href: "https://facebook.com", icon: Facebook, label: "Facebook" },
+    { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
+    { href: "https://instagram.com", icon: Instagram, label: "Instagram" },
+  ];
+
+  return (
+    <footer className="bg-gray-100 pt-12 pb-8" aria-labelledby="footer-heading">
+      <h2 id="footer-heading" className="sr-only">
+        Footer
+      </h2>
+      <div className="container mx-auto px-4">
+        <div className="flex flex-wrap">
+          <div className="w-full lg:w-1/3 mb-8 lg:mb-0">
+            <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+              Let&apos;s keep in touch!
+            </h2>
+            <p className="text-gray-600 mb-4">
+              Find us on any of these platforms, we respond within 1-2 business
+              days.
+            </p>
+            <div className="flex space-x-4">
+              {socialLinks.map((link) => (
+                <SocialIcon key={link.href} {...link} />
+              ))}
+            </div>
+          </div>
+          <div className="w-full lg:w-2/3">
+            <div className="flex flex-wrap">
+              <FooterLinkSection title="Company" links={companyLinks} />
+              <FooterLinkSection title="Resources" links={resourceLinks} />
+              <FooterLinkSection title="Legal" links={legalLinks} />
             </div>
           </div>
         </div>
-        <hr className="my-6 border-blueGray-300" />
-        <div className="flex flex-wrap items-center md:justify-between justify-center">
-          <div className="w-full md:w-4/12 px-4 mx-auto text-center">
-            <div className="text-sm text-blueGray-500 font-semibold py-1">
-              Copyright © <span id="get-current-year">2024</span>
-              <a
-                href="https://www.creative-tim.com/product/notus-js"
-                className="text-blueGray-500 hover:text-gray-800"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {" "}
-                by Salaar
-              </a>
-              .
-            </div>
-          </div>
+        <hr className="my-8 border-gray-200" />
+        <div className="text-center">
+          <p className="text-gray-500 text-sm">
+            © {currentYear} Salaar. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

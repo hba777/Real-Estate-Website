@@ -58,7 +58,7 @@ export default function App({ Component, pageProps }) {
     <ThemeProvider enableSystem={true} attribute="class">
       <Header handleGoogleSignIn={handleGoogleSignIn} user={user} />
       <Component {...pageProps} />
-      <Footer/>
+      <Footer />
     </ThemeProvider>
   );
 }
