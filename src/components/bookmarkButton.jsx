@@ -84,14 +84,14 @@ const BookmarkButton = ({ property }) => {
     <>
       <button
         onClick={handleBookmarkClick}
-        className="flex items-center gap-2 px-4 py-2 bg-white rounded hover:bg-gray-300 border border-black transition"
+        className="flex items-center gap-2 px-2 py-1.5 bg-black/20 rounded hover:bg-gray-300 transition"
       >
         {isBookmarked ? (
           <BsBookmarkFill className="text-lg text-blue-500" />
         ) : (
           <BsBookmark className="text-lg" />
         )}
-        <span>{isBookmarked ? "Bookmarked" : "Bookmark"}</span>
+        {/* <span>{isBookmarked ? "Bookmarked" : "Bookmark"}</span> */}
       </button>
 
       {showSignInPopup && (
