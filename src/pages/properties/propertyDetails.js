@@ -21,9 +21,9 @@ const PropertyDetails = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto px-10 mt-20 flex flex-col lg:flex-row md:flex-row">
       {/* Property Card Section */}
-      <div className="flex flex-col lg:flex-row items-center gap-5 bg-white shadow-lg rounded-lg p-5">
+      <div className="flex flex-col lg:flex-row items-center gap-5 p-5">
         <div
           key={property.property_id}
           className="flex flex-col md:flex-row items-center"
@@ -39,16 +39,16 @@ const PropertyDetails = () => {
           />
 
           {/* Buttons Section */}
-          <div className="ml-0 md:ml-9 mt-4 md:mt-0 p-3 flex flex-col gap-3">
+          {/* <div className="ml-0 md:ml-9 mt-4 md:mt-0 p-3 flex flex-col gap-3">
             <PropertyMapButton property={property} />
             <BookmarkButton property={property} />
             <WhatsAppButton property={property} />
-          </div>
+          </div> */}
         </div>
       </div>
 
       {/* Table Section */}
-      <div className="mt-6 bg-white shadow-lg rounded-lg p-5">
+      <div className="mt-5 ">
         <PropertyDetailsTable property={property} />
       </div>
     </div>
