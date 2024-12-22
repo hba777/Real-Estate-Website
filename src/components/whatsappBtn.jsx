@@ -1,23 +1,39 @@
 // src/components/WhatsappButton.js
 import Image from "next/image";
 
-export default function WhatsAppButton () {
+export default function WhatsAppButton({ property }) {
+  console.log("Property Data Received in WhatsAppButton:", property);
+  if (!property) {
+    console.error("Property data is missing in WhatsAppButton component");
+    return null; // Do not render if property data is unavailable
+  }
+
+  const phoneNumber = "+923345098296"; // Correct phone number with country code
+  const message = encodeURIComponent(
+    `I would like to get more information about the '${
+      property.property_type || "N/A"
+    }' located in '${property.locality || "N/A"}' with price '${
+      property.price || "N/A"
+    }'.`
+  );
+
+  const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
+
   return (
     <a
-      href="https://wa.me/03345098296" // Default WhatsApp Web link
+      href={whatsappLink}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center justify-center bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600 transition whitespace-nowrap" // Added `whitespace-nowrap`
+      className="flex items-center justify-center bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600 transition whitespace-nowrap"
     >
       <Image
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" // WhatsApp logo URL
+        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
         alt="WhatsApp"
         height={192}
         width={192}
-        className="w-5 h-5 mr-2 shrink-0" // Ensure icon size doesn't shrink
+        className="w-5 h-5 mr-2 shrink-0"
       />
       Contact Us
     </a>
   );
-};
-
+}
