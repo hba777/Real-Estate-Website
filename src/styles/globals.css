@@ -123,3 +123,13 @@ a {
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom styles for hiding the scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Hides scrollbar for Chrome/Safari */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* Hides scrollbar for IE and Edge */
+  scrollbar-width: none; /* Hides scrollbar for Firefox */
+}

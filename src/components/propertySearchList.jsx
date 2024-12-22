@@ -141,19 +141,21 @@ export default function PropertySearchList() {
 
           {/* Pagination */}
           <div className="flex justify-center mt-8 space-x-2 mb-4">
-            {Array.from({ length: totalPages }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => handlePageChange(index + 1)}
-                className={`px-4 py-2 rounded-lg shadow-md ${
-                  currentPage === index + 1
-                    ? "bg-black text-white"
-                    : "bg-gray-200 text-gray-600 hover:bg-gray-300"
-                }`}
-              >
-                {index + 1}
-              </button>
-            ))}
+            <div className="overflow-x-auto no-scrollbar scroll-smooth flex space-x-2 pb-4 ">
+              {Array.from({ length: totalPages }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handlePageChange(index + 1)}
+                  className={`px-4 py-2 rounded-lg shadow-md ${
+                    currentPage === index + 1
+                      ? "bg-black text-white"
+                      : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       ) : (
