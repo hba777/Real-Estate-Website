@@ -7,7 +7,7 @@ export default function ThankYouPage() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 text-center">
       <h1 className="text-4xl font-bold text-blue-600 mb-4">Thank You!</h1>
       <p className="text-lg text-gray-700 mb-6">
-        Your message has been successfully sent. We'll get back to you soon!
+        Your message has been successfully sent. We&apos;ll get back to you soon!
       </p>
       <button
         onClick={() => router.push("/")}
