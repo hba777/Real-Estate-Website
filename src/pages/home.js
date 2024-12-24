@@ -5,7 +5,7 @@ import AutoCarousel from "@/components/Carousel";
 import ContactUs from "@/components/contactUs";
 import ReviewSection from "@/components/review";
 import Services from "@/components/services";
-import ContactForm from "@/components/form";
+import ContactForm from "@/components/contactForm";
 
 const HomePage = () => {
   const [showButton, setShowButton] = useState(false);
