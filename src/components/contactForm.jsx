@@ -32,7 +32,7 @@ const ContactForm = () => {
 
       if (response.ok) {
         toast.success(result.message);
-        router.push("/thank-you");
+        router.push("/thankyou");
       } else {
         toast.error(result.message || "Something went wrong!");
       }

@@ -89,7 +89,7 @@ const BookmarkButton = ({ property }) => {
         {isBookmarked ? (
           <BsBookmarkFill className="text-lg text-blue-500" />
         ) : (
-          <BsBookmark className="text-lg" />
+          <BsBookmark className="text-lg text-white" />
         )}
         {/* <span>{isBookmarked ? "Bookmarked" : "Bookmark"}</span> */}
       </button>
