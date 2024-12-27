@@ -7,7 +7,7 @@ export default function PropertySearchList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const resultsPerPage = 3;
+  const resultsPerPage = 9; // Display 9 results per page (3x3 grid)
 
   const router = useRouter();
   const {
@@ -32,8 +32,7 @@ export default function PropertySearchList() {
         const response = await fetch("/api/getProperty", { signal });
         if (!response.ok) throw new Error("Network response was not ok");
 
-        const data = await response.json().then();
-        console.log("API Data:", data);
+        const data = await response.json();
         setLoading(false);
 
         // Filter properties based on query parameters
@@ -55,8 +54,6 @@ export default function PropertySearchList() {
             (!bedrooms || property.bedrooms == bedrooms)
           );
         });
-
-        console.log("Filtered Properties:", filteredProperties);
 
         setProperties(filteredProperties);
       } catch (error) {
@@ -113,27 +110,23 @@ export default function PropertySearchList() {
     currentPage * resultsPerPage
   );
 
-  console.log(totalPages);
-
   return (
     <div className="min-h-screen px-5">
       {paginatedProperties.length > 0 ? (
         <div>
-          <div className="grid gap-3 grid-cols-1">
+          {/* Grid layout for 3x3 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 max-w-screen-lg mx-auto">
             {paginatedProperties.map((property) => (
-              <div
-                key={property.property_id}
-                className="w-full sm:w-full md:w-[90%] lg:w-full mx-auto"
-              >
+              <div key={property.property_id}>
                 <SearchResultCard
-                price={property.price}
-                address={property.locality}
-                bedrooms={property.bedrooms}
-                baths={property.baths}
-                area={property.area}
-                images={property.images}
-                onClick={() => handleCardClick(property)}
-                className="w-full h-[calc(100%+10px)] sm:h-[calc(100%+10px)] md:h-[calc(100%+20px)] lg:h-[calc(100%+20px)]" // Adjust card height for mobile and larger screens
+                  price={property.price}
+                  address={property.locality}
+                  bedrooms={property.bedrooms}
+                  baths={property.baths}
+                  area={property.area}
+                  images={property.images}
+                  onClick={() => handleCardClick(property)}
+                  className="w-full h-full"
                 />
               </div>
             ))}
