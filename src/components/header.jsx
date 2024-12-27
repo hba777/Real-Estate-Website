@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth, googleProvider } from "../utils/firebase";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import { FcGoogle } from "react-icons/fc";
 
 const db = getFirestore();
@@ -23,6 +23,7 @@ export default function Header() {
         id: loggedInUser.uid,
         Image: loggedInUser.photoURL || "/default-profile-pic.jpg",
         Name: loggedInUser.displayName || "Anonymous",
+        role: "user", // Default role
       };
 
       const userDoc = doc(db, "users", loggedInUser.uid);
@@ -45,15 +46,15 @@ export default function Header() {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
-        const userData = {
-          Email: currentUser.email,
-          id: currentUser.uid,
-          Image: currentUser.photoURL || "/default-profile-pic.jpg",
-          Name: currentUser.displayName || "Anonymous",
-        };
-        setUser(userData);
+        const userRef = doc(db, "users", currentUser.uid);
+        const userDoc = await getDoc(userRef);
+        const userData = userDoc.exists() ? userDoc.data() : null;
+
+        if (userData) {
+          setUser(userData);
+        }
       } else {
         setUser(null);
       }
@@ -102,7 +103,7 @@ export default function Header() {
               <polygon points="10 8 16 12 10 16 10 8" />
             </svg>
             <span
-              className={`text-xl font-bold px-4 py-2  transition-all duration-300 rounded-md ${
+              className={`text-xl font-bold px-4 py-2 transition-all duration-300 rounded-md ${
                 scrolled ? "border-transparent" : "border-black"
               } bg-transparent text-black`}
             >
@@ -170,6 +171,19 @@ export default function Header() {
                       >
                         Sign Out
                       </button>
+                      {/* Admin Dashboard Link */}
+                      {user && user.role === "admin" && (
+                        <Link
+                          href="/adminDashboard"
+                          className={`px-4 py-2 text-sm transition ${
+                            scrolled
+                              ? "bg-black text-white"
+                              : "bg-white text-black"
+                          } hover:bg-gray-10`}
+                        >
+                          Admin Dashboard
+                        </Link>
+                      )}
                     </div>
                   )}
                 </>
