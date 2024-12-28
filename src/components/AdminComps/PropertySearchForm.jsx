@@ -166,16 +166,15 @@ export default function PropertySearchForm({ onSubmit }) {
                 className="w-full p-2 border border-gray-300 rounded-md bg-white text-gray-800 text-sm focus:ring-2 focus:ring-gray-800 focus:border-gray-800"
               />
             </div>
-            {/* here  */}
+            <div className="px-6 py-4">
+              <button
+                type="submit"
+                className="w-full bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-colors duration-300"
+              >
+                Find
+              </button>
+            </div>
           </form>
-        </div>
-        <div className="px-6 py-4">
-          <button
-            type="submit"
-            className="w-full bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-colors duration-300"
-          >
-            Find
-          </button>
         </div>
       </div>
     </div>

@@ -40,24 +40,6 @@ const SocialIcon = ({ href, icon: Icon, label }) => (
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const companyLinks = [
-    { href: "/about", label: "About Us" },
-    { href: "/contact", label: "Contact" },
-    { href: "/careers", label: "Careers" },
-  ];
-
-  const resourceLinks = [
-    { href: "/blog", label: "Blog" },
-    { href: "/faq", label: "FAQ" },
-    { href: "/support", label: "Support" },
-  ];
-
-  const legalLinks = [
-    { href: "/terms", label: "Terms of Service" },
-    { href: "/privacy", label: "Privacy Policy" },
-    { href: "/cookies", label: "Cookie Policy" },
-  ];
-
   const socialLinks = [
     { href: "https://twitter.com", icon: Twitter, label: "Twitter" },
     { href: "https://github.com", icon: Github, label: "GitHub" },
@@ -67,42 +49,41 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-100 pt-12 pb-8" aria-labelledby="footer-heading">
-      <h2 id="footer-heading" className="sr-only">
-        Footer
-      </h2>
-      <div className="container mx-auto px-4">
-        <div className="flex flex-wrap">
-          <div className="w-full lg:w-1/3 mb-8 lg:mb-0">
-            <h2 className="text-3xl font-semibold text-gray-800 mb-4">
-              Let&apos;s keep in touch!
-            </h2>
-            <p className="text-gray-600 mb-4">
-              Find us on any of these platforms, we respond within 1-2 business
-              days.
+    <div className="flex flex-col min-h-screen">
+      {/* Main content */}
+      <footer
+        className="bg-gray-100 pt-12 pb-8 mt-auto"
+        aria-labelledby="footer-heading"
+      >
+        <h2 id="footer-heading" className="sr-only">
+          Footer
+        </h2>
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap">
+            <div className="w-full lg:w-1/3 mb-8 lg:mb-0">
+              <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+                Let&apos;s keep in touch!
+              </h2>
+              <p className="text-gray-600 mb-4">
+                Find us on any of these platforms, we respond within 1-2
+                business days.
+              </p>
+              <div className="flex space-x-4">
+                {socialLinks.map((link) => (
+                  <SocialIcon key={link.href} {...link} />
+                ))}
+              </div>
+            </div>
+            <div className="w-full lg:w-2/3"></div>
+          </div>
+          <div className="text-center">
+            <p className="text-gray-500 text-sm">
+              © {currentYear} Salaar. All rights reserved.
             </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((link) => (
-                <SocialIcon key={link.href} {...link} />
-              ))}
-            </div>
-          </div>
-          <div className="w-full lg:w-2/3">
-            <div className="flex flex-wrap">
-              <FooterLinkSection title="Company" links={companyLinks} />
-              <FooterLinkSection title="Resources" links={resourceLinks} />
-              <FooterLinkSection title="Legal" links={legalLinks} />
-            </div>
           </div>
         </div>
-        <hr className="my-8 border-gray-200" />
-        <div className="text-center">
-          <p className="text-gray-500 text-sm">
-            © {currentYear} Salaar. All rights reserved.
-          </p>
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
   );
 };
 

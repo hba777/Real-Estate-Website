@@ -6,15 +6,14 @@ import { useState } from "react";
 const AdminDashBoard = () => {
   const [searchQuery, setSearchQuery] = useState(""); // State to hold the search query
 
-  // Function to handle form submission and update the search query
-  const handleSearchSubmit = (query) => {
+  const handleSubmit = (query) => {
     setSearchQuery(query);
   };
 
   return (
     <>
       <AddPropertyForm />
-      <PropertySearchForm onSubmit={handleSearchSubmit} />
+      <PropertySearchForm onSubmit={handleSubmit} />
       <UpdatePropertyList searchQuery={searchQuery} />
     </>
   );

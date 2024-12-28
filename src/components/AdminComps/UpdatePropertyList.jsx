@@ -1,26 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import SearchResultCard from "../searchComponents/SearchResultCard";
+import { useRouter } from "next/router";
 
-export default function UpdatePropertyList() {
+export default function UpdatePropertyList({ searchQuery }) {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const resultsPerPage = 9; // Display 9 results per page (3x3 grid)
-
   const router = useRouter();
-  const {
-    city,
-    location,
-    property_type,
-    priceMin,
-    priceMax,
-    areaMin,
-    areaMax,
-    bedrooms,
-  } = router.query;
-
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -35,23 +23,28 @@ export default function UpdatePropertyList() {
         const data = await response.json();
         setLoading(false);
 
-        // Filter properties based on query parameters
+        // Filter properties based on searchQuery
         const filteredProperties = data.filter((property) => {
           return (
-            (!city || (property.city && property.city === city)) && // Exact match for city
-            (!property_type ||
+            (!searchQuery.city ||
+              (property.city && property.city === searchQuery.city)) &&
+            (!searchQuery.property_type ||
               (property.property_type &&
-                property.property_type === property_type)) && // Exact match for property type
-            (!location ||
+                property.property_type === searchQuery.property_type)) &&
+            (!searchQuery.location ||
               (property.locality &&
                 property.locality
                   .toLowerCase()
-                  .includes(location.toLowerCase()))) &&
-            (!priceMin || property.price >= parseInt(priceMin)) &&
-            (!priceMax || property.price <= parseInt(priceMax)) &&
-            (!areaMin || property.area_marla >= parseInt(areaMin)) &&
-            (!areaMax || property.area_marla <= parseInt(areaMax)) &&
-            (!bedrooms || property.bedrooms == bedrooms)
+                  .includes(searchQuery.location.toLowerCase()))) &&
+            (!searchQuery.priceMin ||
+              property.price >= parseInt(searchQuery.priceMin)) &&
+            (!searchQuery.priceMax ||
+              property.price <= parseInt(searchQuery.priceMax)) &&
+            (!searchQuery.areaMin ||
+              property.area_marla >= parseInt(searchQuery.areaMin)) &&
+            (!searchQuery.areaMax ||
+              property.area_marla <= parseInt(searchQuery.areaMax)) &&
+            (!searchQuery.bedrooms || property.bedrooms == searchQuery.bedrooms)
           );
         });
 
@@ -63,25 +56,12 @@ export default function UpdatePropertyList() {
       }
     };
 
-    if (router.isReady) {
-      fetchProperties();
-    }
+    fetchProperties();
 
-    // Cleanup function to abort any ongoing fetch request when dependencies change
     return () => {
       controller.abort();
     };
-  }, [
-    router.isReady,
-    city,
-    location,
-    property_type,
-    priceMin,
-    priceMax,
-    areaMin,
-    areaMax,
-    bedrooms,
-  ]);
+  }, [searchQuery]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -89,7 +69,7 @@ export default function UpdatePropertyList() {
 
   const handleCardClick = (property) => {
     sessionStorage.setItem("selectedProperty", JSON.stringify(property));
-    router.push(`subpages/UpdatePropertyDetails`);
+    router.push(`/subpages/UpdatePropertyDetails`);
   };
 
   if (loading)

@@ -10,24 +10,23 @@ const MapComponent = dynamic(() => import("./MapComponent"), { ssr: false });
 
 export default function AddPropertyForm() {
   const [formData, setFormData] = useState({
-    area: "10 Marla",
-    area_marla: 10,
-    baths: "3",
-    bedrooms: "3",
+    area: "",
+    area_marla: "",
+    baths: "",
+    bedrooms: "",
     city: "Rawalpindi",
     date_added: "2019-06-20T19:00:00.000Z",
     images: [],
     latitude: 33.547162288216,
     longitude: 73.131689429283,
-    price: "33000",
-    property_id: "919906",
-    property_type: "Upper Portion",
-    province_name: "Punjab",
-    locality: "Bahria Town Rawalpindi, Rawalpindi, Punjab",
-    location_id: "3041",
+    price: "",
+    property_id: "",
+    property_type: "",
+    province_name: "",
+    locality: "",
+    location_id: "",
   });
   const router = useRouter();
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -96,9 +95,7 @@ export default function AddPropertyForm() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-        >
-          Admin Dashboard - Property Form
-        </motion.h2>
+        ></motion.h2>
         <motion.form
           onSubmit={handleSubmit}
           className="bg-white shadow-2xl rounded-lg overflow-hidden"
@@ -131,7 +128,7 @@ export default function AddPropertyForm() {
                       name={key}
                       value={formData[key]}
                       onChange={handleInputChange}
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-black focus:border-black sm:text-sm"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-black focus:border-black sm:text-sm text-white" // Added text-white for bright white text
                     />
                   </div>
                 );

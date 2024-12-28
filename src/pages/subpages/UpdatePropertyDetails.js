@@ -103,26 +103,39 @@ const UpdatePropertyDetails = () => {
       {/* Table Section */}
       <div className="mt-5">
         <PropertyDetailsTable property={property} />
+        {/* Edit Property Button */}
+        {!isEditing && (
+          <div className="mt-5 text-center">
+            <button
+              onClick={handleEditToggle}
+              className="p-3 bg-black text-white rounded"
+            >
+              Edit Property
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* Update Property Form Section */}
+      {/* Full-Screen Update Property Form */}
       {isEditing && (
-        <UpdatePropertyForm
-          property={updatedProperty}
-          onSubmit={handleSubmit} // Pass the handleSubmit function to handle form submission
-          onCancel={handleEditToggle} // Pass the toggle function to handle cancel
-        />
-      )}
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+          <div className="relative bg-white p-10 rounded-lg w-full h-full max-w-4xl max-h-4xl overflow-y-auto">
+            <UpdatePropertyForm
+              property={updatedProperty}
+              onSubmit={handleSubmit} // Pass the handleSubmit function to handle form submission
+              onCancel={handleEditToggle} // Pass the toggle function to handle cancel
+            />
 
-      {/* Edit Property Button */}
-      <div className="mt-5 text-center">
-        <button
-          onClick={handleEditToggle}
-          className="p-3 bg-blue-500 text-white rounded"
-        >
-          {isEditing ? "Cancel" : "Edit Property"}
-        </button>
-      </div>
+            {/* Close Button */}
+            <button
+              onClick={handleEditToggle}
+              className="absolute top-5 right-5 p-3 bg-black text-white rounded-full"
+            >
+              &times; {/* This is the 'X' symbol to close the form */}
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
