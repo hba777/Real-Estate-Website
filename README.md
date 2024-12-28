@@ -75,7 +75,6 @@ Follow these steps to get the development environment up and running.
 
 - **Users**: Stores user information for authentication (email, password hash, etc.). Users can have multiple saved properties.
 - **Properties**: Stores detailed information about properties, including price, location, description, and images.
-  - Sample properties include: 3-bedroom house in New York, 2-bedroom apartment in Los Angeles, etc.
 - **Locations**: Stores geographic information for each property, including latitude and longitude.
 - **Images**: Stores images and media for properties. Each property can have multiple associated images.
 
