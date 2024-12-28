@@ -3,11 +3,12 @@
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 // Dynamically import the Map component
 const MapComponent = dynamic(() => import("./MapComponent"), { ssr: false });
 
-export default function AdminDashboardForm() {
+export default function AddPropertyForm() {
   const [formData, setFormData] = useState({
     area: "10 Marla",
     area_marla: 10,
@@ -25,6 +26,8 @@ export default function AdminDashboardForm() {
     locality: "Bahria Town Rawalpindi, Rawalpindi, Punjab",
     location_id: "3041",
   });
+  const router = useRouter();
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -71,6 +74,8 @@ export default function AdminDashboardForm() {
       if (response.ok) {
         const data = await response.json();
         console.log("API Response:", data);
+        router.push("/adminDashboard");
+
         // Show success message
       } else {
         const errorData = await response.json();
