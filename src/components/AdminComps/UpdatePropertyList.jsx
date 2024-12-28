@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import SearchResultCard from "../searchComponents/SearchResultCard";
 
-export default function UpdatePropertyList() {
+export default function UpdatePropertyList({ searchQuery }) {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -51,7 +51,11 @@ export default function UpdatePropertyList() {
             (!priceMax || property.price <= parseInt(priceMax)) &&
             (!areaMin || property.area_marla >= parseInt(areaMin)) &&
             (!areaMax || property.area_marla <= parseInt(areaMax)) &&
-            (!bedrooms || property.bedrooms == bedrooms)
+            (!bedrooms || property.bedrooms == bedrooms) &&
+            (!searchQuery || // Apply searchQuery filter
+              property.locality
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase()))
           );
         });
 
@@ -81,6 +85,7 @@ export default function UpdatePropertyList() {
     areaMin,
     areaMax,
     bedrooms,
+    searchQuery, // Add searchQuery as a dependency
   ]);
 
   const handlePageChange = (page) => {
@@ -114,7 +119,7 @@ export default function UpdatePropertyList() {
           {/* Grid layout for 3x3 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 max-w-screen-lg mx-auto">
             {paginatedProperties.map((property) => (
-              <div key={property.property_id}>
+              <div key={property.property_id} className="relative">
                 <SearchResultCard
                   price={property.price}
                   address={property.locality}
