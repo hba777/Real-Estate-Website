@@ -69,7 +69,6 @@ export default function AutoCarousel3() {
                 <Image
                   src={slide.image}
                   alt={`Image ${(index % slides.length) + 1}`}
-                  layout="responsive"
                   width={400}
                   height={400}
                   className="object-cover rounded-2xl"
