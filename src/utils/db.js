@@ -3,11 +3,11 @@
 import { Pool } from "pg";
 
 const pool = new Pool({
-  user: "postgres", // Your PostgreSQL username
-  password: "BestPasswordEver", // Your PostgreSQL password
-  host: "34.133.41.198", // Replace with your VM/Cloud Instance IP or hostname
-  port: "5432", // PostgreSQL port
-  database: "postgres",
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
 });
 
 export default pool;
