@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 // Dynamically import the Map component
 const MapComponent = dynamic(() => import("./MapComponent"), { ssr: false });
@@ -21,6 +22,7 @@ const UpdatePropertyForm = ({ onSubmit, property, onCancel }) => {
 
   const [newImages, setNewImages] = useState([]); // Track new images separately
 
+  
   useEffect(() => {
     // If a property is passed, populate the form with the data
     if (property) {
@@ -39,6 +41,9 @@ const UpdatePropertyForm = ({ onSubmit, property, onCancel }) => {
 
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const router = useRouter();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -81,6 +86,26 @@ const UpdatePropertyForm = ({ onSubmit, property, onCancel }) => {
           images: updatedImages,
         };
       });
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      console.log(property.property_id);
+
+      setLoading(true);
+      const response = await fetch(`/api/deleteproperty/${property.property_id}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        router.push("/adminDashboard");
+      } else {
+        console.error("Failed to delete property");
+      }
+    } catch (error) {
+      console.error("Error deleting property:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -255,17 +280,52 @@ const UpdatePropertyForm = ({ onSubmit, property, onCancel }) => {
             </div>
           </div>
 
-          <div className="px-6 py-4 bg-gray-50 text-right">
+          <div className="px-6 py-4 bg-gray-50 text-right flex justify-end gap-4">
             <button
               type="submit"
-              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors duration-200"
+              className="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors duration-200"
               disabled={loading}
             >
               {loading ? "Submitting..." : "Submit Property"}
             </button>
+
+            <button
+              type="button"
+              className="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200"
+              onClick={() => setShowDeleteConfirmation(true)}
+              disabled={loading}
+            >
+              Delete Property
+            </button>
           </div>
         </motion.form>
       </div>
+
+      {showDeleteConfirmation && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-96">
+            <h3 className="text-lg font-medium text-gray-900 mb-4">
+              Are you sure you want to delete this property?
+            </h3>
+            <div className="flex justify-end gap-4">
+              <button
+                type="button"
+                className="py-2 px-4 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300"
+                onClick={() => setShowDeleteConfirmation(false)}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="py-2 px-4 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700"
+                onClick={handleDelete}
+              >
+                Yes, Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
