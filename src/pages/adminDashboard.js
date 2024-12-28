@@ -1,13 +1,14 @@
-import AdminDashboardForm from '@/components/AdminComps/AdminDashboardForm';
+import AdminDashboardForm from "@/components/AdminComps/AddPropertyForm";
+import UpdatePropertyList from "@/components/AdminComps/UpdatePropertyList";
 
 // Dynamically import the Map component
 
 const AdminDashBoard = () => {
   return (
     <>
-    <AdminDashboardForm/>
+      <UpdatePropertyList />
     </>
   );
-}
+};
 
 export default AdminDashBoard;

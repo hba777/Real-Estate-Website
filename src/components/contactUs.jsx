@@ -7,10 +7,10 @@ export default function TestimonialSection() {
       {/* Background Image */}
       <Image
         src="/images/Image-4.webp"
-        layout="fill"
         objectFit="cover"
         quality={85}
         priority
+        layout="fill"
         className="absolute inset-0"
         alt="Scenic view background image"
       />

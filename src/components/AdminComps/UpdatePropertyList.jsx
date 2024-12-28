@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import SearchResultCard from "./SearchResultCard";
+import SearchResultCard from "../searchComponents/SearchResultCard";
 
-export default function PropertySearchList() {
+export default function UpdatePropertyList() {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -88,11 +88,8 @@ export default function PropertySearchList() {
   };
 
   const handleCardClick = (property) => {
-    // Save the property data in session storage
     sessionStorage.setItem("selectedProperty", JSON.stringify(property));
-
-    // Navigate to the details page
-    router.push(`/subpages/propertyDetails`);
+    router.push(`subpages/UpdatePropertyDetails`);
   };
 
   if (loading)
