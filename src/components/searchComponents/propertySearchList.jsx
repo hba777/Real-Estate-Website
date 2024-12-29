@@ -111,11 +111,11 @@ export default function PropertySearchList() {
   );
 
   return (
-    <div className="min-h-screen px-5">
+    <div className="min-h-screen">
       {paginatedProperties.length > 0 ? (
         <div>
           {/* Grid layout for 3x3 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 max-w-screen-lg mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 gap-5 max-w-screen-lg mx-auto">
             {paginatedProperties.map((property) => (
               <div key={property.property_id}>
                 <SearchResultCard

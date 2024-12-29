@@ -82,9 +82,9 @@ const SearchPage = () => {
           ref={addToRefs}
           className="fade-in opacity-0 translate-y-10 transition-all duration-700 ease-out"
         >
-          <div className="mt-12">
+          <div className="mt-12 px-24">
             {/* <PropertySearchList /> */}
-            <PropertySearchList/>
+            <PropertySearchList />
           </div>
         </div>
       </div>
