@@ -5,6 +5,7 @@ import { signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth, googleProvider } from "../utils/firebase";
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import { FcGoogle } from "react-icons/fc";
+import { useRouter } from "next/router"; // Import useRouter
 
 const db = getFirestore();
 
@@ -13,6 +14,7 @@ export default function Header() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef(null);
+  const router = useRouter();
 
   const makeAdmin = async () => {
     if (user) {
@@ -166,17 +168,17 @@ export default function Header() {
                 scrolled
                   ? "bg-black text-white rounded-l-full"
                   : "bg-white text-black rounded-l-full"
-              } hover:bg-gray-10`} // Lighter hover effect
+              } hover:bg-gray-10`}
             >
               Home
             </Link>
             <Link
-              href="https://wa.me/03345098296" // Replace <PHONE_NUMBER> with the actual number
-              target="_blank" // Opens WhatsApp Web in a new tab
-              rel="noopener noreferrer" // Adds security
+              href="https://wa.me/03345098296"
+              target="_blank"
+              rel="noopener noreferrer"
               className={`px-4 py-2 text-sm transition ${
                 scrolled ? "bg-black text-white" : "bg-white text-black"
-              } hover:bg-gray-10`} // Lighter hover effect
+              } hover:bg-gray-10`}
             >
               Contact Us
             </Link>
@@ -184,13 +186,28 @@ export default function Header() {
             <Link
               href="/bookmarks"
               className={`px-4 py-2 text-sm transition ${
-                scrolled
-                  ? "bg-black text-white rounded-r-full"
-                  : "bg-white text-black rounded-r-full"
-              } hover:bg-gray-10`} // Lighter hover effect
+                scrolled ? "bg-black text-white" : "bg-white text-black"
+              } ${
+                router.pathname !== "/adminDashboard"
+                  ? "rounded-r-full"
+                  : ""
+              } hover:bg-gray-10`}
             >
               Bookmarks
             </Link>
+
+            {router.pathname === "/adminDashboard" && (
+              <Link
+                href="/subpages/addProperty"
+                className={`px-4 py-2 text-sm transition ${
+                  scrolled
+                    ? "bg-black text-white rounded-r-full"
+                    : "bg-white text-black rounded-r-full"
+                } hover:bg-gray-10`}
+              >
+                Add Property
+              </Link>
+            )}
           </div>
 
           {/* User Actions */}
