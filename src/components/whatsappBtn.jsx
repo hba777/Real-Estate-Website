@@ -24,7 +24,7 @@ export default function WhatsAppButton({ property }) {
       href={whatsappLink}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center justify-center bg-black/20 text-white px-2 py-1 rounded hover:bg-green-900 transition whitespace-nowrap"
+      className="flex items-center justify-center bg-black/50 text-white px-2 py-1 rounded hover:bg-green-900 transition whitespace-nowrap"
     >
       <Image
         src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
