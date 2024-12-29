@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
@@ -12,6 +12,45 @@ export default function Header() {
   const [user, setUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const makeAdmin = async () => {
+    if (user) {
+      // Show a prompt for the password
+      const password = window.prompt("Enter the admin password:");
+
+      // Check if the password matches
+      if (password === "123") {
+        const userRef = doc(db, "users", user.id);
+        await setDoc(userRef, { role: "admin" }, { merge: true });
+        alert("You are now an admin!");
+        setShowDropdown(false);
+
+        // Update the user state dynamically
+        setUser((prevUser) => ({
+          ...prevUser,
+          role: "admin",
+        }));
+      } else {
+        alert("Incorrect password. Access denied.");
+      }
+    }
+  };
+
+  const makeUser = async () => {
+    if (user) {
+      const userRef = doc(db, "users", user.id);
+      await setDoc(userRef, { role: "user" }, { merge: true });
+      alert("You are now a User!");
+      setShowDropdown(false);
+
+      // Update the user state dynamically
+      setUser((prevUser) => ({
+        ...prevUser,
+        role: "user",
+      }));
+    }
+  };
 
   const handleGoogleSignIn = async () => {
     try {
@@ -45,6 +84,12 @@ export default function Header() {
     }
   };
 
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setShowDropdown(false);
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
@@ -69,9 +114,11 @@ export default function Header() {
     };
 
     window.addEventListener("scroll", handleScroll);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
       unsubscribe();
     };
   }, []);
@@ -149,7 +196,7 @@ export default function Header() {
           {/* User Actions */}
           <div className="flex items-center space-x-4">
             {/* Sign-in Button */}
-            <div className="relative">
+            <div className="relative" ref={dropdownRef}>
               {user ? (
                 <>
                   <Image
@@ -171,18 +218,35 @@ export default function Header() {
                       >
                         Sign Out
                       </button>
+
+                      {user && user.role !== "admin" && (
+                        <button
+                          onClick={makeAdmin}
+                          className="block w-full px-4 py-2 text-left text-sm text-black hover:bg-gray-100"
+                        >
+                          Make Me Admin
+                        </button>
+                      )}
                       {/* Admin Dashboard Link */}
                       {user && user.role === "admin" && (
-                        <Link
-                          href="/adminDashboard"
-                          className={`px-4 py-2 text-sm transition ${
-                            scrolled
-                              ? "bg-black text-white"
-                              : "bg-white text-black"
-                          } hover:bg-gray-10`}
-                        >
-                          Admin Dashboard
-                        </Link>
+                        <div>
+                          <Link
+                            href="/adminDashboard"
+                            className={`px-4 py-2 text-sm transition ${
+                              scrolled
+                                ? "bg-black text-white"
+                                : "bg-white text-black"
+                            } hover:bg-gray-10`}
+                          >
+                            Admin Dashboard
+                          </Link>
+                          <button
+                            onClick={makeUser}
+                            className="block w-full px-4 py-2 text-left text-sm text-black hover:bg-gray-100"
+                          >
+                            Make Me User
+                          </button>
+                        </div>
                       )}
                     </div>
                   )}

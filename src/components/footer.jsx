@@ -49,7 +49,7 @@ const Footer = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col">
       {/* Main content */}
       <footer
         className="bg-gray-100 pt-12 pb-8 mt-auto"
