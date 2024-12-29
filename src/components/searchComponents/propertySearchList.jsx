@@ -115,21 +115,23 @@ export default function PropertySearchList() {
       {paginatedProperties.length > 0 ? (
         <div>
           {/* Grid layout for 3x3 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 max-w-screen-lg mx-auto">
-            {paginatedProperties.map((property) => (
-              <div key={property.property_id}>
-                <SearchResultCard
-                  price={property.price}
-                  address={property.locality}
-                  bedrooms={property.bedrooms}
-                  baths={property.baths}
-                  area={property.area}
-                  images={property.images}
-                  onClick={() => handleCardClick(property)}
-                  className="w-full h-full"
-                />
-              </div>
-            ))}
+          <div className="flex justify-center items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-screen-lg mx-auto">
+              {paginatedProperties.map((property) => (
+                <div key={property.property_id}>
+                  <SearchResultCard
+                    price={property.price}
+                    address={property.locality}
+                    bedrooms={property.bedrooms}
+                    baths={property.baths}
+                    area={property.area}
+                    images={property.images}
+                    onClick={() => handleCardClick(property)}
+                    className="w-full h-full"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Pagination */}

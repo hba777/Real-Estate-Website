@@ -165,7 +165,7 @@ export default function Bookmarks() {
     sessionStorage.setItem("selectedProperty", JSON.stringify(property));
 
     // Navigate to the details page
-    router.push(`/properties/propertyDetails`);
+    router.push(`/subpages/propertyDetails`);
   };
 
   if (isLoading)
@@ -229,20 +229,22 @@ export default function Bookmarks() {
           <h2>No bookmarks</h2>
         </div>
       ) : (
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredProperties.map((property) => (
-            <div key={property.property_id}>
-              <SearchResultCard
-                images={property.images}
-                price={property.price}
-                address={property.locality}
-                bedrooms={property.bedrooms}
-                baths={property.baths}
-                area={property.area}
-                onClick={() => handleCardClick(property)} // Set selected property
-              />
-            </div>
-          ))}
+        <div className="flex justify-center items-center">
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 px-16 ">
+            {filteredProperties.map((property) => (
+              <div key={property.property_id}>
+                <SearchResultCard
+                  images={property.images}
+                  price={property.price}
+                  address={property.locality}
+                  bedrooms={property.bedrooms}
+                  baths={property.baths}
+                  area={property.area}
+                  onClick={() => handleCardClick(property)} // Set selected property
+                />
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
