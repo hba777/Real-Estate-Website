@@ -82,23 +82,24 @@ Follow these steps to get the development environment up and running.
 
 ![image](https://github.com/user-attachments/assets/285a64c4-568c-4ceb-b230-a115ad4006a0)
 
-## UI Screenshots
+## UI 
 
-Here are some UI screenshots of the application to showcase the design:
-
-### PropertySearch card and Details
-
-![image](https://github.com/user-attachments/assets/a63c5cac-0e05-4f9a-a111-419749f5e1ee)
-
-### Contact Form and Mape
-
-![image](https://github.com/user-attachments/assets/f4eba0ba-002b-4e6f-bec1-dd0ed217a133)
+https://github.com/user-attachments/assets/0de015c2-b61d-4198-ac7a-f97ebe915b1b
 
 
-A detailed view of a property with images, descriptions, and an interactive map showing its location.
 
-### Admin Dashbord
+https://github.com/user-attachments/assets/12db7ba3-82e5-4083-a456-bbfbc6a6812a
 
 
-A user profile page where users can view their saved properties and search history.
+
+https://github.com/user-attachments/assets/f44c0a84-fc32-4351-97d3-c23b36000739
+
+
+
+https://github.com/user-attachments/assets/9c5c4135-d1c7-4191-940f-4b86aae7c165
+
+
+
+https://github.com/user-attachments/assets/8956cda4-7183-4d43-9e7f-4e4f2992dab9
+
 
