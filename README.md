@@ -7,6 +7,8 @@
 
 "LONA" is a modern web application designed for buying, selling, and renting properties. It features a responsive and user-friendly interface with advanced search capabilities, an interactive map integration, and secure user account management.
 
+> **Note:** The database is currently **no longer live** and cannot be accessed in the cloud. You will need to set up your own database instance for local or cloud deployment.
+
 ## Features
 
 - **Search and Filter Properties**: Users can search properties by criteria such as price, location, size, and property type (e.g., house, apartment, etc.). Advanced filters allow for a personalized search experience.
@@ -78,5 +80,25 @@ Follow these steps to get the development environment up and running.
 - **Locations**: Stores geographic information for each property, including latitude and longitude.
 - **Images**: Stores images and media for properties. Each property can have multiple associated images.
 
+![image](https://github.com/user-attachments/assets/285a64c4-568c-4ceb-b230-a115ad4006a0)
 
+## UI Screenshots
+
+Here are some UI screenshots of the application to showcase the design:
+
+### PropertySearch card and Details
+
+![image](https://github.com/user-attachments/assets/a63c5cac-0e05-4f9a-a111-419749f5e1ee)
+
+### Contact Form and Mape
+
+![image](https://github.com/user-attachments/assets/f4eba0ba-002b-4e6f-bec1-dd0ed217a133)
+
+
+A detailed view of a property with images, descriptions, and an interactive map showing its location.
+
+### Admin Dashbord
+
+
+A user profile page where users can view their saved properties and search history.
 
