@@ -96,8 +96,11 @@ https://github.com/user-attachments/assets/8956cda4-7183-4d43-9e7f-4e4f2992dab9
 
 ### Diagrams
 - **Use Case Diagram**
+  
 ![image](https://github.com/user-attachments/assets/8835c418-04c4-4d52-9627-b2ccfd078899)
 - **Sequence Diagram**
+  
 ![image](https://github.com/user-attachments/assets/849d1a0c-9d61-40bb-b0bb-9ede7e616e30)
 - **Activity Diagram**
+  
 ![image](https://github.com/user-attachments/assets/2647fa8d-e761-4fac-a42f-bff5fee1ebf2)
