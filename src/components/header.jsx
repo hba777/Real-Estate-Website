@@ -173,9 +173,7 @@ export default function Header() {
               Home
             </Link>
             <Link
-              href="https://wa.me/03345098296"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
               className={`px-4 py-2 text-sm transition ${
                 scrolled ? "bg-black text-white" : "bg-white text-black"
               } hover:bg-gray-10`}
